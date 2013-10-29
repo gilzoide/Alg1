@@ -1,0 +1,8 @@
+# arquivos objeto
+*.o
+
+# pdf do trabalho (no meu tem)
+Alg-Trab1.pdf
+
+# arquivos de backup de texto
+*~
