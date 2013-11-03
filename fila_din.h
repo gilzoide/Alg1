@@ -1,16 +1,21 @@
-/* TAD da Fila Estatica Circular */
+/* TAD da Fila Dinamica */
 
 
-#define TAM 20	// tamanho estatico maximo da fila
 #define ERRO -1	// retorno de funcoes: deu algum problema no caminho
 
 
+typedef struct no {
+	char usuario[30];	// nome de quem deu o lance
+	int lance;	// valor do lance
+
+	struct no* prox;
+} No;
+
+
 typedef struct fila {
-	char usuario[TAM][30];	// nome de quem deu o lance
-	int lance[TAM];	// valor do lance
-	
-	int ini, fim;	// inicio e fim da fila, ini == -1 significa lista vazia
+	No *ini, *fim;	// inicio e fim da fila
 } Fila;
+
 
 
 /* inicializa a fila com padroes determinados */
@@ -24,7 +29,7 @@ int FilaEstaVazia (Fila *);
 
 /* insere usuario e lance na fila
  * 
- * ERRO: Overflow, fila cheia
+ * ERRO: erro na alocacao de memoria
  */
 int FilaInsere (Fila *, int *, const char *);
 

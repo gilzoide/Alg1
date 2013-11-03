@@ -24,18 +24,12 @@ void FilaInicia (Fila *F) {
 
 
 int FilaEstaVazia (Fila *F) {
-	if (F->ini == -1)
-		return 1;
-	else
-		return 0;
+	return F->ini == -1;
 }
 
 
 int FilaEstaCheia (Fila *F) {
-	if (F->ini == Circular (F->fim + 1))
-		return 1;
-	else
-		return 0;
+	return F->ini == Circular (F->fim + 1);
 }
 
 
@@ -55,7 +49,7 @@ int FilaInsere (Fila *F, int *valor, const char *nome) {
 		if (FilaEstaVazia (F))
 			F->ini = F->fim;
 		
-		return SUCCESS;
+		return 1;
 	}
 }
 
@@ -76,7 +70,7 @@ int FilaRetira (Fila *F, int *valor, char *nome) {
 		if (F->ini == Circular (F->fim + 1))
 			F->ini = -1;
 		
-		return SUCCESS;		
+		return 1;
 	}
 }
 
