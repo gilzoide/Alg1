@@ -2,22 +2,15 @@
 
 #include "fila_est.h"
 
-
-
-struct fila {
-	char usuario[TAM][30];	// nome de quem deu o lance
-	int lance[TAM];	// valor do lance
-	
-	int ini, fim;	// inicio e fim da fila, ini == -1 significa lista vazia
-};
-
+#include <string.h>
+#include <stdio.h>
 
 
 /* Funcao auxiliar para facilitar a circularidade da fila (inclusive nao consta no .h)
  * 
  * 'x' eh levado ao comeco caso tenha passado do final
- * retorno pide ser usado tanto para comparacoes quanto para
- * atribuicao
+ * 
+ * retorno pode ser usado tanto para comparacoes quanto para atribuicao
  */
 int Circular (int x) {
 	return x % TAM;
@@ -31,22 +24,28 @@ void FilaInicia (Fila *F) {
 
 
 int FilaEstaVazia (Fila *F) {
-	return F->ini == -1;
+	if (F->ini == -1)
+		return 1;
+	else
+		return 0;
 }
 
 
 int FilaEstaCheia (Fila *F) {
-	return F->ini == Circular (F->fim + 1);
+	if (F->ini == Circular (F->fim + 1))
+		return 1;
+	else
+		return 0;
 }
 
 
-int FilaInsere (Fila *F, int *valor, char *nome) {
+int FilaInsere (Fila *F, int *valor, const char *nome) {
 	// versao estatica, pode se ter estouro do vetor
 	if (FilaEstaCheia (F))
 		return ERRO;
 		
 	else {
-		// avanca o fim, respeitandoa a circularidade
+		// avanca o fim, respeitando a circularidade
 		F->fim = Circular (F->fim + 1);
 		// entra com os valores no bloquinho
 		F->lance[F->fim] = *valor;
@@ -79,4 +78,40 @@ int FilaRetira (Fila *F, int *valor, char *nome) {
 		
 		return SUCCESS;		
 	}
+}
+
+
+void FilaPrint (Fila *F) {
+	if (FilaEstaVazia (F)) {
+		puts ("Fila Vazia");
+		return;
+	}
+
+	else {
+		Fila aux;
+		FilaInicia (&aux);
+		
+		int x;
+		char nome[30];
+		
+		// copia de uma fila pra outra e escreve os resultados parciais
+		while (!FilaEstaVazia (F)) {
+			FilaRetira (F, &x, nome);
+			printf ("%s: %d\n", nome, x);
+			FilaInsere (&aux, &x, nome);
+		}
+		// recopia para a fila original
+		while (!FilaEstaVazia (&aux)) {
+			FilaRetira (&aux, &x, nome);
+			FilaInsere (F, &x, nome);
+		}
+		
+		FilaDestroi (&aux);
+	}
+}
+
+
+void FilaDestroi (Fila *F) {
+	F->ini = -1;
+	F->fim = -1;
 }
