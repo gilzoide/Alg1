@@ -221,4 +221,29 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaRetira(Lista* L, elem* x) {
     
+    elem* p; elem* i;
+    
+    int encontrou = ListaBusca(L, x, &p);
+    
+    if (encontrou != 0)
+        return encontrou;
+    
+    // reorganiza a lista usando aritmetica de ponteiros
+    for (i = p; i != L->elementos[L->tamanho]; i++) {
+        strcpy(i, i + 1);
+    }
+    
+    L->tamanho--;
+    
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
