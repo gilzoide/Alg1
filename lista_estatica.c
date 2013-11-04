@@ -35,7 +35,7 @@
  *                  1: erro: nao foi possivel criar a lista
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int cria_a_lista(Lista* L) {
+int cria_lista(Lista* L) {
     L->tamanho = 0;
     return 0;
 }
@@ -54,7 +54,7 @@ int cria_a_lista(Lista* L) {
  *                  1: esta cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int a_lista_esta_cheia(Lista* L) {
+int lista_esta_cheia(Lista* L) {
     
     if (L->tamanho >= TAMANHO_MAX_DA_LISTA)
         return 1;
@@ -76,7 +76,7 @@ int a_lista_esta_cheia(Lista* L) {
  *                  1: esta vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int a_lista_esta_vazia(Lista* L) {
+int lista_esta_vazia(Lista* L) {
     
     if (L->tamanho <= 0)
         return 1;
@@ -105,19 +105,25 @@ int insere_x_na_posicao_p_da_lista(Lista* L, elem* x, int p) {
     
     int i;
     
-    if (a_lista_esta_cheia(L))
+    if (lista_esta_cheia(L))
         return 1;
     
-    else if (p >= L->tamanho || p < 0)
+    // checa se a posicao eh valida
+    else if (p >= TAMANHO_MAX_DA_LISTA || p < 0)
         return 2;
     
+    // 'empurra' os elementos para a direita
     for (i = p; i < L->tamanho; i++) {
         
         // L->elementos[i + 1] = L->elementos[i];
         strcpy(L->elementos[i + 1], L->elementos[i]);
     }
     
+    // insere o novo elemento
     strcpy(L->elementos[p], x);
+    
+    // atualiza o tamanho da lista
+    L->tamanho++;
     
     return 0;
 }
@@ -140,6 +146,16 @@ int insere_x_na_posicao_p_da_lista(Lista* L, elem* x, int p) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int insere_x_na_lista_ordenada(Lista* L, elem* x) {
     
+    int i;
+    
+    // busca pela posicao que mantera a lista ordenada
+    for (i = 0; i < L->tamanho; i++) {
+        if (strcmp(L->elementos[i], x) >= 0)
+            break;
+    }
+    
+    // insere x na posicao encontrada
+    return insere_x_na_posicao_p_da_lista(L, x, i);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -152,7 +168,7 @@ int insere_x_na_lista_ordenada(Lista* L, elem* x) {
  * Parametros:
  *          Lista* L: a lista onde havera insercao
  *          elem* x: elemento que sera (ou nao) encontrado
- *          elem* p: se x for encontrado, sera o ponteiro para o mesmo,
+ *          elem** p: se x for encontrado, sera o ponteiro para o mesmo,
  *                   caso contrario, sera NULL
  *
  * Retorno:
@@ -161,7 +177,29 @@ int insere_x_na_lista_ordenada(Lista* L, elem* x) {
  *                  2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int busca_elemento_na_lista(Lista* L, elem* x, elem* p) {
+int busca_elemento_na_lista(Lista* L, elem* x, elem** p) {
+    
+    int i;
+    *p = NULL;
+    
+    if (lista_esta_vazia(L))
+        return 1;
+    
+    // percorre a lista ate encontrar x
+    for (i = 0; i < L->tamanho; i++) {
+        if (strcmp(L->elementos[i], x) == 0)
+            break;
+    }
+    
+    // checa se realmente foi encontrado
+    if (strcmp(L->elementos[i], x) == 0) {
+        
+        *p = L->elementos[i];
+        return 0;
+    }
+    
+    else
+        return 2;
     
 }
 

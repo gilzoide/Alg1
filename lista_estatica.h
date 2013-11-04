@@ -45,7 +45,7 @@ typedef struct {
  *                  1: erro: nao foi possivel criar a lista
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int cria_a_lista(Lista* L);
+int cria_lista(Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -61,7 +61,7 @@ int cria_a_lista(Lista* L);
  *                  1: esta cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int a_lista_esta_cheia(Lista* L);
+int lista_esta_cheia(Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -77,7 +77,7 @@ int a_lista_esta_cheia(Lista* L);
  *                  1: esta vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int a_lista_esta_vazia(Lista* L);
+int lista_esta_vazia(Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -126,7 +126,7 @@ int insere_x_na_lista_ordenada(Lista* L, elem* x);
  * Parametros:
  *          Lista* L: a lista onde havera insercao
  *          elem* x: elemento que sera (ou nao) encontrado
- *          elem* p: se x for encontrado, sera o ponteiro para o mesmo,
+ *          elem** p: se x for encontrado, sera o ponteiro para o mesmo,
  *                   caso contrario, sera NULL
  *
  * Retorno:
@@ -135,7 +135,7 @@ int insere_x_na_lista_ordenada(Lista* L, elem* x);
  *                  2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int busca_elemento_na_lista(Lista* L, elem* x, elem* p);
+int busca_elemento_na_lista(Lista* L, elem* x, elem** p);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
