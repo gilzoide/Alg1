@@ -1,3 +1,20 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                             *
+ *  ALG1 - Trabalho 1                                                          *
+ *  lista_estatica.h                                                           *
+ *                                                                             *
+ *  Alex Frederico Ramos Barboza    Nº7986480                                  *
+ *  alex.barbosa@usp.br                                                        *
+ *                                                                             *
+ *  Gil Barboza Reis                Nº8532248                                  *
+ *  gil.reis@usp.br                                                            *
+ *                                                                             *
+ *  Leonardo Sampaio Ferraz Ribeiro Nº8532300                                  *
+ *  leonardo.sampaio.ribeiro@usp.br                                            *
+ *                                                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+ 
+
 /* TAD da Fila Dinamica */
 
 
@@ -8,7 +25,7 @@
 #include <stdio.h>
 
 
-void FilaInicia (Fila *F) {
+void FilaCria (Fila *F) {
 	F->ini = NULL;
 	F->fim = NULL;
 }

@@ -1,3 +1,20 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                             *
+ *  ALG1 - Trabalho 1                                                          *
+ *  lista_estatica.h                                                           *
+ *                                                                             *
+ *  Alex Frederico Ramos Barboza    Nº7986480                                  *
+ *  alex.barbosa@usp.br                                                        *
+ *                                                                             *
+ *  Gil Barboza Reis                Nº8532248                                  *
+ *  gil.reis@usp.br                                                            *
+ *                                                                             *
+ *  Leonardo Sampaio Ferraz Ribeiro Nº8532300                                  *
+ *  leonardo.sampaio.ribeiro@usp.br                                            *
+ *                                                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
 /* TAD da Fila Estatica Circular */
 
 #include "fila_est.h"
@@ -17,7 +34,7 @@ int Circular (int x) {
 }
 
 
-void FilaInicia (Fila *F) {
+void FilaCria (Fila *F) {
 	F->ini = -1;
 	F->fim = -1;
 }
@@ -49,7 +66,7 @@ int FilaInsere (Fila *F, int *valor, const char *nome) {
 		if (FilaEstaVazia (F))
 			F->ini = F->fim;
 		
-		return 1;
+		return 0;
 	}
 }
 
