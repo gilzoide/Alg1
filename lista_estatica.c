@@ -35,7 +35,7 @@
  *                  1: erro: nao foi possivel criar a lista
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int cria_lista(Lista* L) {
+int ListaCria(Lista* L) {
     L->tamanho = 0;
     return 0;
 }
@@ -54,7 +54,7 @@ int cria_lista(Lista* L) {
  *                  1: esta cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int lista_esta_cheia(Lista* L) {
+int ListaEstaCheia(Lista* L) {
     
     if (L->tamanho >= TAMANHO_MAX_DA_LISTA)
         return 1;
@@ -76,7 +76,7 @@ int lista_esta_cheia(Lista* L) {
  *                  1: esta vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int lista_esta_vazia(Lista* L) {
+int ListaEstaVazia(Lista* L) {
     
     if (L->tamanho <= 0)
         return 1;
@@ -101,11 +101,11 @@ int lista_esta_vazia(Lista* L) {
  *                  2: erro: posicao invalida ou erro na insercao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int insere_x_na_posicao_p_da_lista(Lista* L, elem* x, int p) {
+int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
     
     int i;
     
-    if (lista_esta_cheia(L))
+    if (ListaEstaCheia(L))
         return 1;
     
     // checa se a posicao eh valida
@@ -144,7 +144,7 @@ int insere_x_na_posicao_p_da_lista(Lista* L, elem* x, int p) {
  *                  2: erro: erro na insercao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int insere_x_na_lista_ordenada(Lista* L, elem* x) {
+int ListaInsereOrdenado(Lista* L, elem* x) {
     
     int i;
     
@@ -155,7 +155,7 @@ int insere_x_na_lista_ordenada(Lista* L, elem* x) {
     }
     
     // insere x na posicao encontrada
-    return insere_x_na_posicao_p_da_lista(L, x, i);
+    return ListaInsereNaPosicaoP(L, x, i);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -177,12 +177,12 @@ int insere_x_na_lista_ordenada(Lista* L, elem* x) {
  *                  2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int busca_elemento_na_lista(Lista* L, elem* x, elem** p) {
+int ListaBusca(Lista* L, elem* x, elem** p) {
     
     int i;
     *p = NULL;
     
-    if (lista_esta_vazia(L))
+    if (ListaEstaVazia(L))
         return 1;
     
     // percorre a lista ate encontrar x
@@ -219,6 +219,6 @@ int busca_elemento_na_lista(Lista* L, elem* x, elem** p) {
  *                  2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int retira_x_da_lista(Lista* L, elem* x) {
+int ListaRetira(Lista* L, elem* x) {
     
 }

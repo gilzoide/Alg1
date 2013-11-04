@@ -45,7 +45,7 @@ typedef struct {
  *                  1: erro: nao foi possivel criar a lista
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int cria_lista(Lista* L);
+int ListaCria(Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -61,7 +61,7 @@ int cria_lista(Lista* L);
  *                  1: esta cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int lista_esta_cheia(Lista* L);
+int ListaEstaCheia(Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -77,7 +77,7 @@ int lista_esta_cheia(Lista* L);
  *                  1: esta vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int lista_esta_vazia(Lista* L);
+int ListaEstaVazia(Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -96,7 +96,7 @@ int lista_esta_vazia(Lista* L);
  *                  2: erro: posicao invalida ou erro na insercao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int insere_x_na_posicao_p_da_lista(Lista* L, elem* x, int p);
+int ListaInsereNaPosicaoP(Lista* L, elem* x, int p);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -114,7 +114,7 @@ int insere_x_na_posicao_p_da_lista(Lista* L, elem* x, int p);
  *                  2: erro: erro na insercao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int insere_x_na_lista_ordenada(Lista* L, elem* x);
+int ListaInsereOrdenado(Lista* L, elem* x);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -135,7 +135,7 @@ int insere_x_na_lista_ordenada(Lista* L, elem* x);
  *                  2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int busca_elemento_na_lista(Lista* L, elem* x, elem** p);
+int ListaBusca(Lista* L, elem* x, elem** p);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -153,7 +153,7 @@ int busca_elemento_na_lista(Lista* L, elem* x, elem** p);
  *                  2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int retira_x_da_lista(Lista* L, elem* x);
+int ListaRetira(Lista* L, elem* x);
 
 
 #endif
