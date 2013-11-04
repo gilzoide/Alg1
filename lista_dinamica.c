@@ -27,13 +27,6 @@
  *
  * Descricao: insere um elem x na posicao p da lista
  *
- * Parametros:
- *          Lista* L: a lista que sera criada
- *
- * Retorno:
- *          int:    0: sucesso
- *                  1: erro: nao foi possivel criar a lista
- *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaCria(Lista* L) {
     
@@ -49,13 +42,6 @@ int ListaCria(Lista* L) {
  *
  * Descricao: verifica se a lista esta cheia
  *
- * Parametros:
- *          Lista* L: a lista
- *
- * Retorno:
- *          int:    0: nao esta cheia
- *                  1: esta cheia
- *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaEstaCheia(Lista* L) {
     
@@ -68,13 +54,6 @@ int ListaEstaCheia(Lista* L) {
  * Funcao Esta Vazia?
  *
  * Descricao: verifica se a lista esta vazia
- *
- * Parametros:
- *          Lista* L: a lista
- *
- * Retorno:
- *          int:    0: nao esta vazia
- *                  1: esta vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaEstaVazia(Lista* L) {
@@ -90,16 +69,6 @@ int ListaEstaVazia(Lista* L) {
  * Funcao Inserir na Posicao
  *
  * Descricao: insere um elem x na posicao p da lista
- *
- * Parametros:
- *          Lista* L: a lista onde havera insercao
- *          elem* x: ponteiro para o elemento que sera inserido
- *          int p: a posicao onde ocorrera a insercao
- *
- * Retorno:
- *          int:    0: sucesso
- *                  1: erro: a lista esta cheia
- *                  2: erro: posicao invalida ou erro na insercao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
@@ -134,15 +103,6 @@ int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
  *
  * Descricao: insere um elem x mantendo a ordenacao da lista
  *
- * Parametros:
- *          Lista* L: a lista onde havera insercao
- *          elem* x: ponteiro para o elemento que sera inserido
- *
- * Retorno:
- *          int:    0: sucesso
- *                  1: erro: a lista esta cheia
- *                  2: erro: erro na insercao
- *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInsereOrdenado(Lista* L, elem* x) {
     
@@ -175,20 +135,32 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
  * Descricao: busca um elemento x e retorna um ponteiro para
  * o mesmo na lista usando o parametro p da fucao
  *
- * Parametros:
- *          Lista* L: a lista onde havera insercao
- *          elem* x: elemento que sera (ou nao) encontrado
- *          elem** p: se x for encontrado, sera o ponteiro para o mesmo,
- *                   caso contrario, sera NULL
- *
- * Retorno:
- *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
- *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaBusca(Lista* L, elem* x, elem** p) {
     
+    no** aux; *p = NULL;
+    
+    if (ListaEstaVazia(L))
+        return 1;
+    
+    // encontra o elemento
+    for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
+        if (strcmp((*aux)->info, x) == 0)
+            break;
+    }
+    
+    // checa se encontrou o elemento
+    if ((*aux) != NULL && strcmp((*aux)->info, x) == 0) {
+        
+        *p = (*aux)->info;
+        return 0;
+        
+    }
+    
+    // nao encontrou
+    else {
+        return 2;
+    }
     
 }
 
@@ -198,32 +170,31 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
  *
  * Descricao: retira um elemento da lista
  *
- * Parametros:
- *          Lista* L: a lista onde havera insercao
- *          elem* x: elemento que sera retirado
- *
- * Retorno:
- *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
- *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaRetira(Lista* L, elem* x) {
     
+    no** aux;
+    
+    if (ListaEstaVazia(L))
+        return 1;
+    
+    // encontra o elemento
+    for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
+        if (strcmp((*aux)->info, x) == 0)
+            break;
+    }
+    
+    // checa se encontrou o elemento
+    if ((*aux) != NULL && strcmp((*aux)->info, x) == 0) {
+        
+        no* tmp = (*aux);
+        *aux = (*aux)->prox;
+        free(tmp);
+        return 0;
+    }
+    
+    // nao encontrou
+    else {
+        return 2;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
