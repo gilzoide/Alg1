@@ -17,6 +17,8 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "lista_estatica.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -106,7 +108,18 @@ int insere_x_na_posicao_p_da_lista(Lista* L, elem* x, int p) {
     if (a_lista_esta_cheia(L))
         return 1;
     
+    else if (p >= L->tamanho || p < 0)
+        return 2;
     
+    for (i = p; i < L->tamanho; i++) {
+        
+        // L->elementos[i + 1] = L->elementos[i];
+        strcpy(L->elementos[i + 1], L->elementos[i]);
+    }
+    
+    strcpy(L->elementos[p], x);
+    
+    return 0;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
