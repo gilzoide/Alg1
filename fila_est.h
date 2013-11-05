@@ -27,7 +27,6 @@
 
 typedef struct fila {
 	char usuario[TAM][30];	// nome de quem deu o lance
-	int lance[TAM];	// valor do lance
 	
 	int ini, fim;	// inicio e fim da fila, ini == -1 significa lista vazia
 } Fila;
@@ -93,7 +92,7 @@ int FilaEstaCheia (Fila *);
  *                  ERRO: overflow, fila cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int FilaInsere (Fila *, int *, const char *);
+int FilaInsere (Fila *, const char *);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -112,7 +111,7 @@ int FilaInsere (Fila *, int *, const char *);
  *                  ERRO: underflow, fila vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int FilaRetira (Fila *, int *, char *);
+int FilaRetira (Fila *, char *);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *

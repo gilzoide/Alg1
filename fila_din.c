@@ -36,7 +36,12 @@ int FilaEstaVazia (Fila *F) {
 }
 
 
-int FilaInsere (Fila *F, int *valor, const char *nome) {
+int FilaEstaCheia (Fila *F) {
+	return 0;
+}
+
+
+int FilaInsere (Fila *F, const char *nome) {
 	No *aux;
 	
 	// cria o novo bloco de informacao da fila
@@ -44,8 +49,7 @@ int FilaInsere (Fila *F, int *valor, const char *nome) {
 		return ERRO;
 	
 	
-	// entra com os valores no bloquinho
-	aux->lance = *valor;
+	// entra com o nome no bloquinho
 	strcpy (aux->usuario, nome);
 	aux->prox = NULL;
 	
@@ -63,7 +67,7 @@ int FilaInsere (Fila *F, int *valor, const char *nome) {
 }
 
 
-int FilaRetira (Fila *F, int *valor, char *nome) {
+int FilaRetira (Fila *F, char *nome) {
 	// se lista esta vazia, nao ha o que retirar
 	if (FilaEstaVazia (F))
 		return ERRO;
@@ -72,8 +76,7 @@ int FilaRetira (Fila *F, int *valor, char *nome) {
 		No *aux = F->ini;	// No a ser retirado eh o primeiro
 		F->ini = F->ini->prox;	// primeiro No agora eh o antigo segundo
 		
-		// retira os valores do No
-		*valor = aux->lance;
+		// retira o nome do No
 		strcpy (nome, aux->usuario);
 		
 		// apaga No
@@ -99,14 +102,14 @@ void FilaPrint (Fila *F) {
 		
 		// copia de uma fila pra outra e escreve os resultados parciais
 		while (!FilaEstaVazia (F)) {
-			FilaRetira (F, &x, nome);
-			printf ("%s: %d\n", nome, x);
-			FilaInsere (&aux, &x, nome);
+			FilaRetira (F, nome);
+			printf ("%s\n", nome);
+			FilaInsere (&aux, nome);
 		}
 		// recopia para a fila original
 		while (!FilaEstaVazia (&aux)) {
-			FilaRetira (&aux, &x, nome);
-			FilaInsere (F, &x, nome);
+			FilaRetira (&aux, nome);
+			FilaInsere (F, nome);
 		}
 		
 		FilaDestroi (&aux);

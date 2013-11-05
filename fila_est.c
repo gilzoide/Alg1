@@ -50,7 +50,7 @@ int FilaEstaCheia (Fila *F) {
 }
 
 
-int FilaInsere (Fila *F, int *valor, const char *nome) {
+int FilaInsere (Fila *F, const char *nome) {
 	// versao estatica, pode se ter estouro do vetor
 	if (FilaEstaCheia (F))
 		return ERRO;
@@ -58,8 +58,7 @@ int FilaInsere (Fila *F, int *valor, const char *nome) {
 	else {
 		// avanca o fim, respeitando a circularidade
 		F->fim = Circular (F->fim + 1);
-		// entra com os valores no bloquinho
-		F->lance[F->fim] = *valor;
+		// entra com o nome no bloquinho
 		strcpy (F->usuario[F->fim], nome);
 		
 		// se a lista estava vazia, inicio eh o mesmo do fim
@@ -71,14 +70,13 @@ int FilaInsere (Fila *F, int *valor, const char *nome) {
 }
 
 
-int FilaRetira (Fila *F, int *valor, char *nome) {
+int FilaRetira (Fila *F, char *nome) {
 	// se lista esta vazia, nao ha o que retirar
 	if (FilaEstaVazia (F))
 		return ERRO;
 	
 	else {
-		// retira os valores do bloquinho
-		*valor = F->lance[F->ini];
+		// retira o nome do bloquinho
 		strcpy (nome, F->usuario[F->ini]);
 		// avanca o inicio, respeitandoa a circularidade
 		F->ini = Circular (F->ini + 1);
@@ -102,19 +100,18 @@ void FilaPrint (Fila *F) {
 		Fila aux;
 		FilaInicia (&aux);
 		
-		int x;
 		char nome[30];
 		
 		// copia de uma fila pra outra e escreve os resultados parciais
 		while (!FilaEstaVazia (F)) {
-			FilaRetira (F, &x, nome);
-			printf ("%s: %d\n", nome, x);
-			FilaInsere (&aux, &x, nome);
+			FilaRetira (F, nome);
+			printf ("%s\n", nome);
+			FilaInsere (&aux, nome);
 		}
 		// recopia para a fila original
 		while (!FilaEstaVazia (&aux)) {
-			FilaRetira (&aux, &x, nome);
-			FilaInsere (F, &x, nome);
+			FilaRetira (&aux, nome);
+			FilaInsere (F, nome);
 		}
 		
 		FilaDestroi (&aux);

@@ -26,7 +26,6 @@
 
 typedef struct no {
 	char usuario[30];	// nome de quem deu o lance
-	int lance;	// valor do lance
 
 	struct no* prox;
 } No;
@@ -76,8 +75,7 @@ int FilaEstaVazia (Fila *);
  *          Fila*: fila a ser verificada
  *
  * Retorno:
- *          int:    0: nao esta cheia
- *                  1: esta cheia
+ *          int:    0: fila dinamica nunca estara cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int FilaEstaCheia (Fila *);
@@ -98,7 +96,7 @@ int FilaEstaCheia (Fila *);
  *                  ERRO: overflow, fila cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int FilaInsere (Fila *, int *, const char *);
+int FilaInsere (Fila *, const char *);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -117,7 +115,7 @@ int FilaInsere (Fila *, int *, const char *);
  *                  ERRO: underflow, fila vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int FilaRetira (Fila *, int *, char *);
+int FilaRetira (Fila *, char *);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
