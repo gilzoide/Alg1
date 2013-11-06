@@ -14,6 +14,8 @@
 
 
 void MostraEscolhas () {
+	puts ("Leilões Alg1:\n");
+
 	puts ("c) Cadastrar produto");
 	puts ("l) Listar produtos e lances");
 	puts ("d) Dar um lance");

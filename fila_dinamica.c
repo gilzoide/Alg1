@@ -41,10 +41,10 @@ int FilaEstaCheia (Fila *F) {
 
 
 int FilaInsere (Fila *F, const char *nome) {
-	No *aux;
+	fila_No *aux;
 	
 	// cria o novo bloco de informacao da fila
-	if ((aux = (No*) malloc (sizeof (No))) == NULL)
+	if ((aux = (fila_No*) malloc (sizeof (fila_No))) == NULL)
 		return ERRO;
 	
 	
@@ -72,7 +72,7 @@ int FilaRetira (Fila *F, char *nome) {
 		return ERRO;
 	
 	else {
-		No *aux = F->ini;	// No a ser retirado eh o primeiro
+		fila_No *aux = F->ini;	// No a ser retirado eh o primeiro
 		F->ini = F->ini->prox;	// primeiro No agora eh o antigo segundo
 		
 		// retira o nome do No
@@ -117,7 +117,7 @@ void FilaPrint (Fila *F) {
 
 
 void FilaDestroi (Fila *F) {
-	No *aux;
+	fila_No *aux;
 	
 	while (!FilaEstaVazia (F)) {
 		aux = F->ini;

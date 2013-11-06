@@ -23,15 +23,15 @@
 #define ERRO -1	// retorno de funcoes: deu algum problema no caminho
 
 
-typedef struct no {
+typedef struct fila_no {
 	char usuario[30];	// nome de quem deu o lance
 
-	struct no* prox;
-} No;
+	struct fila_no* prox;
+} fila_No;
 
 
 typedef struct fila {
-	No *ini, *fim;	// inicio e fim da fila
+	fila_No *ini, *fim;	// inicio e fim da fila
 } Fila;
 
 
