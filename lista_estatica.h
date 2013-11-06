@@ -22,11 +22,18 @@
 #define TAMANHO_DO_NOME 30
 #define TAMANHO_MAX_DA_LISTA 100
 
-typedef char elem;
+typedef int Pilha;
+
+typedef struct {
+  
+    char nome[TAMANHO_DO_NOME];
+    Pilha a_pilha;
+    
+} elem;
 
 typedef struct {
     
-    elem elementos[TAMANHO_MAX_DA_LISTA][TAMANHO_DO_NOME];
+    elem elementos[TAMANHO_MAX_DA_LISTA];
     int tamanho;
     
 } Lista;

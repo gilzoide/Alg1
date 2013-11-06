@@ -87,7 +87,7 @@ int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
     no* novo = (no*) malloc(sizeof(no));
     if (novo == NULL) return 2;
     
-    strcpy(novo->info, x);
+    strcpy(novo->info.nome, x->nome);
     novo->prox = (*aux)->prox;
     *aux = novo;
     
@@ -110,7 +110,7 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
     
     // encontra a posicao
     for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
-        if (strcmp((*aux)->info, x) >= 0)
+        if (strcmp((*aux)->info.nome, x->nome) >= 0)
             break;
     }
     
@@ -118,7 +118,7 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
     no* novo = (no*) malloc(sizeof(no));
     if (novo == NULL) return 2;
     
-    strcpy(novo->info, x);
+    strcpy(novo->info.nome, x->nome);
     novo->prox = (*aux)->prox;
     *aux = novo;
     
@@ -145,12 +145,12 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
     
     // encontra o elemento
     for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
-        if (strcmp((*aux)->info, x) == 0)
+        if (strcmp((*aux)->info.nome, x->nome) == 0)
             break;
     }
     
     // checa se encontrou o elemento
-    if ((*aux) != NULL && strcmp((*aux)->info, x) == 0) {
+    if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
         
         *p = (*aux)->info;
         return 0;
@@ -180,12 +180,12 @@ int ListaRetira(Lista* L, elem* x) {
     
     // encontra o elemento
     for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
-        if (strcmp((*aux)->info, x) == 0)
+        if (strcmp((*aux)->info.nome, x->nome) == 0)
             break;
     }
     
     // checa se encontrou o elemento
-    if ((*aux) != NULL && strcmp((*aux)->info, x) == 0) {
+    if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
         
         no* tmp = (*aux);
         *aux = (*aux)->prox;

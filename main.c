@@ -31,7 +31,7 @@ int main(int argc, const char * argv[])
 	Fila historico;
 	Lista produtos;
 	
-	FilaCria (&historico);
+	FilaInicia(&historico);
 	ListaCria (&produtos);
 	
 	// loop principal do programa

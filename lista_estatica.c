@@ -85,11 +85,11 @@ int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
     for (i = p; i < L->tamanho; i++) {
         
         // L->elementos[i + 1] = L->elementos[i];
-        strcpy(L->elementos[i + 1], L->elementos[i]);
+        strcpy(L->elementos[i + 1].nome, L->elementos[i].nome);
     }
     
     // insere o novo elemento
-    strcpy(L->elementos[p], x);
+    strcpy(L->elementos[p].nome, x->nome);
     
     // atualiza o tamanho da lista
     L->tamanho++;
@@ -110,7 +110,7 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
     
     // busca pela posicao que mantera a lista ordenada
     for (i = 0; i < L->tamanho; i++) {
-        if (strcmp(L->elementos[i], x) >= 0)
+        if (strcmp(L->elementos[i].nome, x->nome) >= 0)
             break;
     }
     
@@ -136,14 +136,14 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
     
     // percorre a lista ate encontrar x
     for (i = 0; i < L->tamanho; i++) {
-        if (strcmp(L->elementos[i], x) == 0)
+        if (strcmp(L->elementos[i].nome, x->nome) == 0)
             break;
     }
     
     // checa se realmente foi encontrado
-    if (strcmp(L->elementos[i], x) == 0) {
+    if (strcmp(L->elementos[i].nome, x->nome) == 0) {
         
-        *p = L->elementos[i];
+        *p = &L->elementos[i];
         return 0;
     }
     
@@ -169,8 +169,8 @@ int ListaRetira(Lista* L, elem* x) {
         return encontrou;
     
     // reorganiza a lista usando aritmetica de ponteiros
-    for (i = p; i != L->elementos[L->tamanho]; i++) {
-        strcpy(i, i + 1);
+    for (i = p; i != &L->elementos[L->tamanho]; i++) {
+        strcpy(i->nome, (i + 1)->nome);
     }
     
     L->tamanho--;
