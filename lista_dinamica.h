@@ -21,11 +21,16 @@
 
 #define TAMANHO_DO_NOME 30
 
-typedef char elem;
+typedef struct {
+    
+    char info[TAMANHO_DO_NOME];
+    Pilha a_pilha;
+    
+} elem;
 
 typedef struct bloco {
     
-    elem info[TAMANHO_DO_NOME];
+    elem info;
     struct bloco* prox;
     
 } no;
