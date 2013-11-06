@@ -42,7 +42,7 @@ typedef struct fila {
  *          Fila*: fila que sera criada
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-void FilaCria (Fila *);
+void FilaInicia (Fila *);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
