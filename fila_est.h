@@ -1,7 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                             *
  *  ALG1 - Trabalho 1                                                          *
- *  lista_estatica.h                                                           *
  *                                                                             *
  *  Alex Frederico Ramos Barboza    Nº7986480                                  *
  *  alex.barbosa@usp.br                                                        *
