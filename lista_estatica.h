@@ -26,7 +26,7 @@ typedef int Pilha;
 
 typedef struct {
   
-    char info[TAMANHO_DO_NOME];
+    char nome[TAMANHO_DO_NOME];
     Pilha a_pilha;
     
 } elem;
