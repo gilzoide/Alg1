@@ -120,7 +120,9 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
     if (novo == NULL) return 2;
     
     strcpy(novo->info.nome, x->nome);
-    novo->prox = (*aux)->prox;
+    
+    if (!(*aux == L->cabeca))
+        novo->prox = (*aux)->prox;
     *aux = novo;
     
     // atualiza o tamanho da lista
@@ -200,6 +202,7 @@ int ListaInsereFila (Lista* L, elem* x, char* usuario) {
     if (ListaBusca (L, x, aux) == 0) {
 		// insere nome na fila do lance respectivo
 		FilaInsere (&(*aux)->a_pilha.topo->preferencia, usuario);
+        return 0;
     }
     else {
 		return 1;
