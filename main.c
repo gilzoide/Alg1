@@ -5,21 +5,20 @@
 //  Copyright (c) 2013 Léo Sampaio. All rights reserved.
 //
 
-/*
+
 #include "fila_dinamica.h"
 #include "lista_dinamica.h"
 #include "pilha_dinamica.h"
-*/
+/*
 #include "fila_estatica.h"
 #include "lista_estatica.h"
 #include "pilha_estatica.h"
-
+*/
 #include <stdio.h>
 
 
 void MostraEscolhas () {
-	puts ("Leilões Alg1:\n");
-
+	puts ("Leilões Alg1:");
 	puts ("c) Cadastrar produto");
 	puts ("l) Listar produtos e lances");
 	puts ("d) Dar um lance");
@@ -40,9 +39,14 @@ void CadastraProduto (Lista *produtos) {
 
 
 void ListarProdutos (Lista produtos) {
-	puts ("Produtos cadastrados\n");
-	ListaPrint (&produtos);
-	puts ("");
+	if (ListaEstaVazia (&produtos)) {
+		puts ("Nenhum produto cadastrado!\n\n");
+	}
+	else {
+		puts ("Produtos cadastrados\n");
+		ListaPrint (&produtos);
+		puts ("\n");
+	}
 }
 
 
@@ -104,6 +108,7 @@ int main (int argc, const char * argv[]) {
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
 		scanf (" %c", &escolha);	// le a escolha do usuario
+		puts ("");
 		
 		switch (escolha) {
 			case 'c':
