@@ -1,5 +1,6 @@
 #include "pilha_dinamica.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -73,8 +74,10 @@ void PilhaDestroi (Pilha *P) {
 
 void PilhaPrint (Pilha *P) {
 	
-	if (PilhaEstaVazia(P))
-		return ERRO;
+	if (PilhaEstaVazia(P)) {
+		puts("Pilha vazia");
+		return;
+	}
 		
     Pilha aux;
     float retorno;
@@ -92,7 +95,7 @@ void PilhaPrint (Pilha *P) {
     }
     
     while (!PilhaEstaVazia(&aux)) {
-		PilhaPop(aux, &retorno);
+		PilhaPop(&aux, &retorno);
 		PilhaPush(P, &retorno);
 	}
 
@@ -111,19 +114,19 @@ int PilhaCopia (Pilha *P1, Pilha *P2) {
     FilaCria (&f_aux);
     
     while (!PilhaEstaVazia(P2)) {
-		FilaCopia (&f_aux, P2->topo->preferencia);
+		FilaCopia (&f_aux, &P2->topo->preferencia);
         PilhaPop (P2, &retorno);
         PilhaPush(&aux, &retorno);
-        FilaCopia (&aux, &f_aux);
+        FilaCopia (&aux.topo->preferencia, &f_aux);
     }
     
     while (!PilhaEstaVazia(&aux)) {
-		FilaCopia (&f_aux, aux->topo->preferencia);
-        PilhaPop(aux, &retorno);
+		FilaCopia (&f_aux, &aux.topo->preferencia);
+        PilhaPop(&aux, &retorno);
         PilhaPush(P1, &retorno);
-        FilaCopia (&aux, P1);
+        FilaCopia (&aux.topo->preferencia, &P1->topo->preferencia);
         PilhaPush(P2, &retorno);
-        FilaCopia (&aux, P2);
+        FilaCopia (&aux.topo->preferencia, &P2->topo->preferencia);
     }
     
     PilhaDestroi (&aux);

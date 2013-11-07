@@ -137,7 +137,7 @@ int ListaInsereOrdenado (Lista* L, elem* x);
  *                   caso contrario, sera NULL
  *
  * Retorno:
- *          int:    indice da posicao encontrada
+ *          int:    i: indice do elemento
  * 					-1: erro: a lista esta vazia
  *                  -2: erro: elemento nao encontrado
  *
@@ -156,10 +156,10 @@ int ListaBusca (Lista* L, elem* x, elem** p);
  *          float* valor: valor do lance a ser inserido
  *
  * Retorno:
- *          int:    indice da posicao de x
- * 					-1: erro: a lista esta vazia
- *                  -2: erro: elemento nao encontrado
- *
+ *          int:    0: sucesso
+ * 					1: erro: a lista esta vazia
+ *                  2: erro: elemento nao encontrado
+ * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInserePilha (Lista* L, elem* x, float* valor);
 
@@ -175,9 +175,8 @@ int ListaInserePilha (Lista* L, elem* x, float* valor);
  *          char* nome: nome do usuario que deu o lance
  *
  * Retorno:
- *          int:    indice da posicao de x
- * 					-1: erro: a lista esta vazia
- *                  -2: erro: elemento nao encontrado
+ *          int:    0: sucesso
+ * 					1: erro na busca
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInsereFila (Lista* L, elem* x, char* usuario);
@@ -194,8 +193,7 @@ int ListaInsereFila (Lista* L, elem* x, char* usuario);
  *
  * Retorno:
  *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
+ *                  1: erro na busca
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaRetira (Lista* L, elem* x);

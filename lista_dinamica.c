@@ -142,7 +142,7 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
     no** aux; *p = NULL;
     
     if (ListaEstaVazia(L))
-        return 1;
+        return -1;
     
     // encontra o elemento
     for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
@@ -153,14 +153,14 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
     // checa se encontrou o elemento
     if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
         
-        *p = (*aux)->info.nome;
+        *p = &(*aux)->info;
         return 0;
         
     }
     
     // nao encontrou
     else {
-        return 2;
+        return -2;
     }
     
 }
@@ -174,30 +174,16 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInserePilha (Lista* L, elem* x, float* valor) {
 	
-	no** aux;
+	elem **aux;
     
-    if (ListaEstaVazia(L))
-        return 1;
-    
-    // encontra o elemento
-    for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
-        if (strcmp((*aux)->info.nome, x->nome) == 0)
-            break;
-    }
-    
-    // checa se encontrou o elemento
-    if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
-        
+    if (ListaBusca (L, x, aux) == 0) {
         // insere lance na pilha respectiva
-        PilhaPush (&(*aux)->info.a_pilha, valor);
+        PilhaPush (&(*aux)->a_pilha, valor);
         return 0;
-        
-    }
-    
-    // nao encontrou
-    else {
-        return 2;
-    }
+	}
+	else {
+		return 1;
+	}
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -209,30 +195,15 @@ int ListaInserePilha (Lista* L, elem* x, float* valor) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInsereFila (Lista* L, elem* x, char* usuario) {
 	
-	no** aux;
+    elem **aux;
     
-    if (ListaEstaVazia(L))
-        return 1;
-    
-    // encontra o elemento
-    for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
-        if (strcmp((*aux)->info.nome, x->nome) == 0)
-            break;
+    if (ListaBusca (L, x, aux) == 0) {
+		// insere nome na fila do lance respectivo
+		FilaInsere (&(*aux)->a_pilha.topo->preferencia, usuario);
     }
-    
-    // checa se encontrou o elemento
-    if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
-        
-        // insere lance na pilha respectiva
-        FilaInsere (&(*aux)->info.a_pilha.topo->preferencia, usuario);
-        return 0;
-        
-    }
-    
-    // nao encontrou
     else {
-        return 2;
-    }
+		return 1;
+	}
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

@@ -5,6 +5,11 @@
 //  Copyright (c) 2013 Léo Sampaio. All rights reserved.
 //
 
+/*
+#include "fila_dinamica.h"
+#include "lista_dinamica.h"
+#include "pilha_dinamica.h"
+*/
 #include "fila_estatica.h"
 #include "lista_estatica.h"
 #include "pilha_estatica.h"
@@ -59,8 +64,9 @@ void DarLance (Lista *produtos) {
 		scanf ("%f", &valor);
 	} while (valor < 0);
 
-#ifdef ALGI_lista_dinamica_h	
-	float ultimo = PilhaEspiaTopo (&produtos->info.a_pilha);
+#ifdef ALGI_lista_dinamica_h
+	float ultimo;
+	PilhaEspiaTopo (&(*aux)->a_pilha, &ultimo);
 #endif
 #ifdef ALGI_lista_estatica_h
 	int i = ListaBusca (produtos, &novo, aux);
@@ -86,9 +92,9 @@ void EncerraLeilao (Lista *produtos) {
 
 
 
-int main (int argc, const char * argv[])
-{
-	char escolha = 0;	// escolha do usuario a cada interacao com o sistema
+int main (int argc, const char * argv[]) {
+	
+	int escolha;	// escolha do usuario a cada interacao com o sistema
 	
 	Lista produtos;
 	

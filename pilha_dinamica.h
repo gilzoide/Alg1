@@ -1,10 +1,9 @@
-#include "fila_dinamica.h"        // existe uma fila dentro da pilha
-
-#define MAXTAM 255
 
 #ifndef ALGI_pilha_dinamica_h
 #define ALGI_pilha_dinamica_h
 
+#define MAXTAM 255
+#include "fila_dinamica.h"        // existe uma fila dentro da pilha
 
 typedef struct pilha_no {
 	float lances;		// lance

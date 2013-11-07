@@ -16,8 +16,8 @@
  *                                                                             *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#ifndef ALGI_lista_estatica_h
-#define ALGI_lista_estatica_h
+#ifndef ALGI_lista_dinamica_h
+#define ALGI_lista_dinamica_h
 
 #include "pilha_dinamica.h"
 
@@ -144,8 +144,8 @@ int ListaInsereOrdenado(Lista* L, elem* x);
  *
  * Retorno:
  *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
+ *                  -1: erro: a lista esta vazia
+ *                  -2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaBusca(Lista* L, elem* x, elem** p);
@@ -163,8 +163,7 @@ int ListaBusca(Lista* L, elem* x, elem** p);
  *
  * Retorno:
  *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
+ *                  1: erro na busca
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInserePilha (Lista* L, elem* x, float* valor);
@@ -182,8 +181,7 @@ int ListaInserePilha (Lista* L, elem* x, float* valor);
  *
  * Retorno:
  *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
+ *                  1: erro na busca
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInsereFila (Lista* L, elem* x, char* usuario);

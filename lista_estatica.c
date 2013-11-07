@@ -163,17 +163,16 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInserePilha (Lista* L, elem* x, float* valor) {
 	
-	int i;
 	elem **aux;
     
-    i = ListaBusca (L, x, aux);
-    
-    if (i >= 0) {
+    if (ListaBusca (L, x, aux) == 0) {
         // insere lance na pilha respectiva
-        PilhaPush (&L->elementos[i].a_pilha, valor);
+        PilhaPush (&(*aux)->a_pilha, valor);
+        return 0;
 	}
-	
-	return i;
+	else {
+		return 1;
+	}
 }
 
 
@@ -186,17 +185,16 @@ int ListaInserePilha (Lista* L, elem* x, float* valor) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInsereFila (Lista* L, elem* x, char* usuario) {
 	
-	int i;
     elem **aux;
+    int i;
     
-    i = ListaBusca (L, x, aux);
-    
-    if (i >= 0) {
+    if (i = ListaBusca (L, x, aux) == 0) {
 		// insere nome na fila do lance respectivo
-		FilaInsere (&L->elementos[i].a_pilha.preferencia[i], usuario);
+		FilaInsere (&(*aux)->a_pilha.preferencia[i], usuario);
     }
-    
-    return i;
+    else {
+		return 1;
+	}
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
