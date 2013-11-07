@@ -51,7 +51,10 @@ int PilhaPop (Pilha *P, float *valorLance) {
 
 
 void PilhaEspiaTopo (Pilha *P, float *valorLance) {
-	*valorLance = P->lances[P->topo];
+	if (PilhaEstaVazia (P))
+		*valorLance = 0;
+	else
+		*valorLance = P->lances[P->topo];
 }
 
 
