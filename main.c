@@ -48,7 +48,7 @@ void ListarProdutos (Lista produtos) {
 	else {
 		puts ("\tProdutos cadastrados");
 		puts ("\t--------------------");
-		ListaPrint (&produtos);
+		ListaPrint (&produtos, 0);
 		puts ("\n");
 	}
 }
