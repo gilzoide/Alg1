@@ -77,7 +77,7 @@ void PilhaPrint (Pilha *P)
 	while (!PilhaEstaVazia(P)) {
 		// so espia topo para ainda nao perdermos a fila
 		PilhaEspiaTopo (P, &retorno);
-		printf ("\tR$%.2f\n", retorno);
+		printf ("R$%.2f\n", retorno);
 		FilaPrint(&P->preferencia[P->topo]);
 		// copia da P pra pilha auxiliar
 		PilhaPop (P, &retorno);

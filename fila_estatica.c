@@ -135,9 +135,10 @@ void FilaPrint (Fila *F) {
 		// copia de uma fila pra outra e escreve os resultados parciais
 		while (!FilaEstaVazia (F)) {
 			FilaRetira (F, nome);
-			printf ("\t\t%s\n", nome);
+			printf ("%s", nome);
 			FilaInsere (&aux, nome);
 		}
+		puts ("");
 		// recopia para a fila original
 		while (!FilaEstaVazia (&aux)) {
 			FilaRetira (&aux, nome);
