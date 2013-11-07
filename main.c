@@ -62,12 +62,12 @@ void DarLance (Lista *produtos) {
 	
 	float valor;
 	char usuario[30];
-	elem novo, **aux;
+	elem novo, *aux;
 	
 	printf ("Nome do produto: ");
 	fgets (novo.nome, TAMANHO_DO_NOME, stdin);
 	
-	int i = ListaBusca (produtos, &novo, aux);
+	int i = ListaBusca (produtos, &novo, &aux);
 	if (i == -1 || i == -2) {
 		puts ("Produto Invalido!\n\
 			Escolha 'l' para listagem de produtos");
@@ -82,12 +82,12 @@ void DarLance (Lista *produtos) {
 		scanf ("%f", &valor);
 	} while (valor < 0);
 
-#ifdef ALGI_lista_dinamica_h
 	float ultimo;
+
+#ifdef ALGI_lista_dinamica_h
 	PilhaEspiaTopo (&(*aux)->a_pilha, &ultimo);
 #endif
 #ifdef ALGI_lista_estatica_h
-	float ultimo;
 	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
 #endif
 
