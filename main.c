@@ -98,6 +98,7 @@ void DarLance (Lista *produtos) {
 	}
 	else {
 		ListaInserePilha (produtos, &novo, &valor);
+		ListaInsereFila (produtos, &novo, usuario);
 	}
 }
 
@@ -119,9 +120,9 @@ int main (int argc, const char * argv[]) {
 	// loop principal do programa
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
-		fpurge (stdin);
+		__fpurge (stdin);
 		scanf (" %c", &escolha);	// le a escolha do usuario
-		fpurge (stdin);
+		__fpurge (stdin);
 		puts ("");
 		
 		switch (escolha) {
