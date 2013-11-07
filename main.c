@@ -6,13 +6,13 @@
 //
 
 
-//#include "fila_dinamica.h"
-//#include "lista_dinamica.h"
-//#include "pilha_dinamica.h"
+#include "fila_dinamica.h"
+#include "lista_dinamica.h"
+#include "pilha_dinamica.h"
 
-#include "fila_estatica.h"
-#include "lista_estatica.h"
-#include "pilha_estatica.h"
+//#include "fila_estatica.h"
+//#include "lista_estatica.h"
+//#include "pilha_estatica.h"
 
 #include <stdio.h>
 
@@ -69,8 +69,7 @@ void DarLance (Lista *produtos) {
 	
 	int i = ListaBusca (produtos, &novo, &aux);
 	if (i == -1 || i == -2) {
-		puts ("Produto Invalido!\n\
-			Escolha 'l' para listagem de produtos");
+		puts ("Produto Invalido!\nEscolha 'l' para listagem de produtos\n");
 		return;
 	}
 	
