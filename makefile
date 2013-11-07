@@ -51,4 +51,4 @@ zip :
 	@zip makefile main.c $(source_static) $(source_dinamic)
 
 clean :
-	@rm $(objs) *~ alg1.zip
+	@rm main $(objs) *~ alg1.zip
