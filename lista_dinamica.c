@@ -110,7 +110,7 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
     no** aux;
     
     // encontra a posicao
-    for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
+    for (aux = &L->cabeca; (*aux) != NULL; aux = &(*aux)->prox) {
         if (strcmp((*aux)->info.nome, x->nome) >= 0)
             break;
     }
@@ -121,8 +121,8 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
     
     strcpy(novo->info.nome, x->nome);
     
-    if (!(*aux == L->cabeca))
-        novo->prox = (*aux)->prox;
+    if (*aux != NULL || *aux != L->cabeca)
+        novo->prox = (*aux);
     *aux = novo;
     
     // atualiza o tamanho da lista
@@ -252,7 +252,7 @@ int ListaRetira(Lista* L, elem* x) {
  * 			  inclusive o conteudo da pilha
  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-void ListaPrint (Lista* L) {
+void ListaPrint (Lista* L, char ultimo) {
 	no* aux;
 	
 	int i = 0;
