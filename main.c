@@ -5,15 +5,15 @@
 //  Copyright (c) 2013 Léo Sampaio. All rights reserved.
 //
 
-
+/*
 #include "fila_dinamica.h"
 #include "lista_dinamica.h"
 #include "pilha_dinamica.h"
-/*
+*/
 #include "fila_estatica.h"
 #include "lista_estatica.h"
 #include "pilha_estatica.h"
-*/
+
 #include <stdio.h>
 
 
@@ -22,9 +22,10 @@ void MostraEscolhas () {
 	puts ("c) Cadastrar produto");
 	puts ("l) Listar produtos e lances");
 	puts ("d) Dar um lance");
-	puts ("e) Encerrar leilao\n");
+	puts ("e) Encerrar leilao");
+	puts ("q) Sair do programa\n");
 	
-	puts ("q) Sair do programa");
+	printf ("resposta > ");
 }
 
 
@@ -32,18 +33,21 @@ void CadastraProduto (Lista *produtos) {
 	elem novo;
 	
 	printf ("Nome do produto: ");
-	fgets (novo.nome, 50, stdin);	// le do usuario o nome do produto
+	fgets (novo.nome, TAMANHO_DO_NOME, stdin);	// le do usuario o nome do produto
 	
 	ListaInsereOrdenado (produtos, &novo);	// insere nome na lista
+	puts ("\n");
 }
 
 
 void ListarProdutos (Lista produtos) {
 	if (ListaEstaVazia (&produtos)) {
 		puts ("Nenhum produto cadastrado!\n\n");
+		return;
 	}
 	else {
-		puts ("Produtos cadastrados\n");
+		puts ("\tProdutos cadastrados");
+		puts ("\t--------------------");
 		ListaPrint (&produtos);
 		puts ("\n");
 	}
@@ -51,17 +55,26 @@ void ListarProdutos (Lista produtos) {
 
 
 void DarLance (Lista *produtos) {
+	if (ListaEstaVazia (produtos)) {
+		puts ("Nenhum produto cadastrado!\n\n");
+		return;
+	}
+	
 	float valor;
 	char usuario[30];
 	elem novo, **aux;
 	
-	fgets (novo.nome, 30, stdin);
+	printf ("Nome do produto: ");
+	fgets (novo.nome, TAMANHO_DO_NOME, stdin);
 	
 	if (ListaBusca (produtos, &novo, aux) != 0) {
 		puts ("Produto Invalido!\n\
 			Escolha 'l' para listagem de produtos");
 		return;
 	}
+	
+	printf ("Nome do usuario: ");
+	fgets (usuario, 30, stdin);
 	
 	do {
 		printf ("Valor do lance: ");
@@ -107,8 +120,9 @@ int main (int argc, const char * argv[]) {
 	// loop principal do programa
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
-		scanf (" %c", &escolha);	// le a escolha do usuario
-		puts ("");
+		__fpurge (stdin);
+		scanf ("%c", &escolha);	// le a escolha do usuario
+		__fpurge (stdin);
 		
 		switch (escolha) {
 			case 'c':

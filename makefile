@@ -19,7 +19,7 @@ dinamica : $(objs_dinamic) main.o
 
 
 # objetos
-main.o : $(source_static) $(source_dinamic)
+main.o : main.c $(source_static) $(source_dinamic)
 	cc -c main.c $(CFLAGS)
 
 lista_estatica.o : lista_estatica.c lista_estatica.h

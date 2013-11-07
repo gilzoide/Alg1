@@ -237,7 +237,7 @@ void ListaPrint (Lista* L) {
 	int i;
 	
 	for (i = 0; i < L->tamanho; i++) {
-		printf ("Produto %d: %s\n", i + 1, L->elementos[i].nome);
+		printf ("Produto %d: %s", i + 1, L->elementos[i].nome);
 		PilhaPrint (&L->elementos[i].a_pilha);
 		puts ("");
 	}

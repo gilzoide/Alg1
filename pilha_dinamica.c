@@ -75,7 +75,7 @@ void PilhaDestroi (Pilha *P) {
 void PilhaPrint (Pilha *P) {
 	
 	if (PilhaEstaVazia(P)) {
-		puts("Pilha vazia");
+		puts("\tNao ha lances");
 		return;
 	}
 		
