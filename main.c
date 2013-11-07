@@ -85,7 +85,7 @@ void DarLance (Lista *produtos) {
 	float ultimo;
 
 #ifdef ALGI_lista_dinamica_h
-	PilhaEspiaTopo (&(*aux)->a_pilha, &ultimo);
+	PilhaEspiaTopo (&(aux)->a_pilha, &ultimo);
 #endif
 #ifdef ALGI_lista_estatica_h
 	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
