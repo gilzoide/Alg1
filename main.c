@@ -6,13 +6,13 @@
 //
 
 
-#include "fila_dinamica.h"
-#include "lista_dinamica.h"
-#include "pilha_dinamica.h"
+//#include "fila_dinamica.h"
+//#include "lista_dinamica.h"
+//#include "pilha_dinamica.h"
 
-//#include "fila_estatica.h"
-//#include "lista_estatica.h"
-//#include "pilha_estatica.h"
+#include "fila_estatica.h"
+#include "lista_estatica.h"
+#include "pilha_estatica.h"
 
 #include <stdio.h>
 
@@ -90,6 +90,8 @@ void DarLance (Lista *produtos) {
 	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
 #endif
 
+	puts ("problema aqui");
+
 	if (valor < ultimo) {
 		puts ("Valor menor que ultimo lance dado!");
 	}
@@ -120,9 +122,17 @@ int main (int argc, const char * argv[]) {
 	// loop principal do programa
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
-		__fpurge (stdin);
 		scanf (" %c", &escolha);	// le a escolha do usuario
+		
+// flush na entrada: especifica por OS
+#ifdef __linux__
 		__fpurge (stdin);
+#elif __APPLE__
+		fpurge (stdin);
+#elif WIN32
+		fflush (stdin);
+#endif
+
 		puts ("");
 		
 		switch (escolha) {
