@@ -191,6 +191,7 @@ int ListaInsereFila (Lista* L, elem* x, char* usuario) {
     if (i = ListaBusca (L, x, aux) == 0) {
 		// insere nome na fila do lance respectivo
 		FilaInsere (&(*aux)->a_pilha.preferencia[i], usuario);
+        return 0;
     }
     else {
 		return 1;
