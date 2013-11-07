@@ -87,6 +87,7 @@ int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
     no* novo = (no*) malloc(sizeof(no));
     if (novo == NULL) return 2;
     
+    PilhaCria (&novo->info.a_pilha);
     strcpy(novo->info.nome, x->nome);
     novo->prox = (*aux)->prox;
     *aux = novo;
@@ -133,10 +134,10 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
  * Funcao Busca Elemento da Lista
  *
  * Descricao: busca um elemento x e retorna um ponteiro para
- * o mesmo na lista usando o parametro p da fucao
+ * o mesmo na lista usando o parametro p da funcao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaBusca(Lista* L, elem* x, elem** p) {
+int ListaBusca (Lista* L, elem* x, elem** p) {
     
     no** aux; *p = NULL;
     
@@ -152,7 +153,7 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
     // checa se encontrou o elemento
     if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
         
-        *p = (*aux)->info;
+        *p = (*aux)->info.nome;
         return 0;
         
     }
@@ -162,6 +163,76 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
         return 2;
     }
     
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao insere na pilha dentro da Lista
+ *
+ * Descricao: busca um elemento x insere o valor na pilha
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaInserePilha (Lista* L, elem* x, float* valor) {
+	
+	no** aux;
+    
+    if (ListaEstaVazia(L))
+        return 1;
+    
+    // encontra o elemento
+    for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
+        if (strcmp((*aux)->info.nome, x->nome) == 0)
+            break;
+    }
+    
+    // checa se encontrou o elemento
+    if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
+        
+        // insere lance na pilha respectiva
+        PilhaPush (&(*aux)->info.a_pilha, valor);
+        return 0;
+        
+    }
+    
+    // nao encontrou
+    else {
+        return 2;
+    }
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Insere na fila dentro da pilha dentro da Lista
+ *
+ * Descricao: busca um elemento x e insere o nome na fila
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaInsereFila (Lista* L, elem* x, char* usuario) {
+	
+	no** aux;
+    
+    if (ListaEstaVazia(L))
+        return 1;
+    
+    // encontra o elemento
+    for (aux = &L->cabeca; (*aux) != NULL; *aux = (*aux)->prox) {
+        if (strcmp((*aux)->info.nome, x->nome) == 0)
+            break;
+    }
+    
+    // checa se encontrou o elemento
+    if ((*aux) != NULL && strcmp((*aux)->info.nome, x->nome) == 0) {
+        
+        // insere lance na pilha respectiva
+        FilaInsere (&(*aux)->info.a_pilha.topo->preferencia, usuario);
+        return 0;
+        
+    }
+    
+    // nao encontrou
+    else {
+        return 2;
+    }
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -198,3 +269,59 @@ int ListaRetira(Lista* L, elem* x) {
         return 2;
     }
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Imprimir Lista
+ *
+ * Descricao: Imprime todos os elementos da lista,
+ * 			  inclusive o conteudo da pilha
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void ListaPrint (Lista* L) {
+	no* aux;
+	
+	int i = 0;
+	
+	for (aux = L->cabeca; aux != NULL; aux = aux->prox) {
+		printf ("Produto %d: %s\n", ++i, aux->info.nome);
+		PilhaPrint (&aux->info.a_pilha);
+		puts ("");
+	}
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Apagar/Destruir/Queimar Lista
+ *
+ * Descricao: destroi toda a lista, liberando a memoria
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void ListaDestroi (Lista *L) {
+	no *ant, *aux;
+	
+	if (!ListaEstaVazia (L)) {
+		ant = L->cabeca;
+		aux = L->cabeca->prox;
+		free (ant);
+		while (aux != NULL) {
+			ant = aux;
+			aux = aux->prox;
+			// libera a memoria do bloco assim como o da pilha la dentro
+			PilhaDestroi (&ant->info.a_pilha);
+			free (ant);
+		}
+	}
+	
+	L->tamanho = 0;
+	L->cabeca = NULL;
+}
+
+
+
+
+
+
+
+
+

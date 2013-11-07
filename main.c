@@ -1,14 +1,13 @@
+//	Trabalho 1 de Algoritmos e Estruturas de Dados 1
 //
-//  main.c
-//  T1
+//  Created by Léo Sampaio, Alex Barboza e Gil Reis on 02/11/13.
 //
-//  Created by Léo Sampaio on 02/11/13.
 //  Copyright (c) 2013 Léo Sampaio. All rights reserved.
 //
 
-#include "fila_est.h"
+#include "fila_estatica.h"
 #include "lista_estatica.h"
-#include pilha (ainda nao sabemos o nome q o jovem dara ao role)
+#include "pilha_estatica.h"
 
 #include <stdio.h>
 
@@ -25,15 +24,71 @@ void MostraEscolhas () {
 }
 
 
+void CadastraProduto (Lista *produtos) {
+	char nome[50];
+	
+	printf ("Nome do produto: ");
+	fgets (nome, 50, stdin);	// le do usuario o nome do produto
+	
+	ListaInsereOrdenado (produtos, nome);	// insere nome na lista
+}
 
-int main(int argc, const char * argv[])
+
+void ListarProdutos (Lista produtos) {
+	puts ("Produtos cadastrados\n");
+	ListaPrint (&produtos);
+	puts ("");
+}
+
+
+void DarLance (Lista *produtos) {
+	float valor;
+	char nome[30], usuario[30];
+	
+	fgets (nome, 30, stdin);
+	
+	if (ListaBusca (produtos, nome, &nome) != 0) {
+		puts ("Produto Invalido!\n\
+			Escolha 'l' para listagem de produtos"
+		return;
+	}
+	
+	do {
+		printf ("Valor do lance: ");
+		scanf ("%f", &valor);
+	} while (valor < 0);
+
+#ifdef ALGI_lista_dinamica_h	
+	float ultimo = produtos->info.a_pilha.topo->lances;
+#endif
+#ifdef ALGI_lista_estatica_h
+	
+#endif
+
+	if (valor < ultimo) {
+		puts ("Valor menor que ultimo lance dado!");
+	}
+	else if (valor == ultimo) {
+		ListaInsereFila (produtos, nome, usuario);
+	}
+	else {
+		ListaInserePilha (produtos, nome, &valor);
+	}
+}
+
+
+void EncerraLeilao (Lista *produtos) {
+	
+}
+
+
+
+int main (int argc, const char * argv[])
 {
 	char escolha = 0;	// escolha do usuario a cada interacao com o sistema
 	
-	Fila historico;
 	Lista produtos;
 	
-	FilaInicia(&historico);
 	ListaCria (&produtos);
 	
 	// loop principal do programa
@@ -43,18 +98,23 @@ int main(int argc, const char * argv[])
 		
 		switch (escolha) {
 			case 'c':
-				CadastraProduto (&L);
+				CadastraProduto (&produtos);
 				break;
 				
 			case 'l':
-				ListarProdutos (L);
+				ListarProdutos (produtos);
 				break;
 			
 			case 'd':
-				DarLance (
-			
+				DarLance (&produtos);
+				break;
+				
+			case 'e':
+				EncerraLeilao (&produtos);
+				break;
 		}
 	}
+	
 	
     
     return 0;

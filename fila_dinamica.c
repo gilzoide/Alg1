@@ -17,7 +17,7 @@
 /* TAD da Fila Dinamica */
 
 
-#include "fila_din.h"
+#include "fila_dinamica.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -102,7 +102,7 @@ void FilaPrint (Fila *F) {
 		// copia de uma fila pra outra e escreve os resultados parciais
 		while (!FilaEstaVazia (F)) {
 			FilaRetira (F, nome);
-			printf ("%s\n", nome);
+			printf ("\t\t%s\n", nome);
 			FilaInsere (&aux, nome);
 		}
 		// recopia para a fila original

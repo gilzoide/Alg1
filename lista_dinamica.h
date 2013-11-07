@@ -19,6 +19,8 @@
 #ifndef ALGI_lista_estatica_h
 #define ALGI_lista_estatica_h
 
+#include "pilha_dinamica.h"
+
 #define TAMANHO_DO_NOME 30
 
 typedef struct {
@@ -150,6 +152,44 @@ int ListaBusca(Lista* L, elem* x, elem** p);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
+ * Funcao insere na pilha dentro da Lista
+ *
+ * Descricao: busca um elemento x e insere o valor na pilha
+ *
+ * Parametros:
+ *          Lista* L: a lista onde havera insercao
+ *          elem* x: elemento que sera (ou nao) encontrado
+ *          float* valor: valor do lance a ser inserido
+ *
+ * Retorno:
+ *          int:    0: sucesso
+ *                  1: erro: a lista esta vazia
+ *                  2: erro: elemento nao encontrado
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaInserePilha (Lista* L, elem* x, float* valor);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Insere na fila dentro da pilha dentro da Lista
+ *
+ * Descricao: busca um elemento x e insere o nome na fila
+ *
+ * Parametros:
+ *          Lista* L: a lista onde havera insercao
+ *          elem* x: elemento que sera (ou nao) encontrado
+ *          char* nome: nome do usuario que deu o lance
+ *
+ * Retorno:
+ *          int:    0: sucesso
+ *                  1: erro: a lista esta vazia
+ *                  2: erro: elemento nao encontrado
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaInsereFila (Lista* L, elem* x, char* usuario);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
  * Funcao Apagar/Destruir/Queimar Elemento da Lista
  *
  * Descricao: retira um elemento da lista
@@ -165,6 +205,31 @@ int ListaBusca(Lista* L, elem* x, elem** p);
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaRetira(Lista* L, elem* x);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Imprimir Lista
+ *
+ * Descricao: Imprime todos os elementos da lista,
+ * 			  inclusive o conteudo da pilha
+ *
+ * Parametros:
+ *          Lista* L: a lista a ser impressa
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void ListaPrint (Lista* L);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Apagar/Destruir/Queimar Lista
+ *
+ * Descricao: destroi toda a lista, liberando a memoria
+ *
+ * Parametros:
+ *          Lista* L: a lista a ser apagada
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void ListaDestroi (Lista* L);
 
 
 #endif

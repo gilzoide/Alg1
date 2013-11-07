@@ -16,7 +16,7 @@
 
 /* TAD da Fila Estatica Circular */
 
-#include "fila_est.h"
+#include "fila_estatica.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -104,7 +104,7 @@ void FilaPrint (Fila *F) {
 		// copia de uma fila pra outra e escreve os resultados parciais
 		while (!FilaEstaVazia (F)) {
 			FilaRetira (F, nome);
-			printf ("%s\n", nome);
+			printf ("\t\t%s\n", nome);
 			FilaInsere (&aux, nome);
 		}
 		// recopia para a fila original

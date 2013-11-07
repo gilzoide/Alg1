@@ -86,10 +86,12 @@ int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
         
         // L->elementos[i + 1] = L->elementos[i];
         strcpy(L->elementos[i + 1].nome, L->elementos[i].nome);
+        PilhaCopia (&L->elementos[i + 1].a_pilha, &L->elementos[i].a_pilha);
     }
     
     // insere o novo elemento
     strcpy(L->elementos[p].nome, x->nome);
+    PilhaCria (&L->elementos[p]->info.a_pilha);
     
     // atualiza o tamanho da lista
     L->tamanho++;
@@ -154,6 +156,73 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
+ * Funcao insere na pilha dentro da Lista
+ *
+ * Descricao: busca um elemento x e insere o valor na pilha
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaInserePilha (Lista* L, elem* x, float* valor) {
+	
+	int i;
+    
+    if (ListaEstaVazia(L))
+        return 1;
+    
+    // percorre a lista ate encontrar x
+    for (i = 0; i < L->tamanho; i++) {
+        if (strcmp(L->elementos[i].nome, x->nome) == 0)
+            break;
+    }
+    
+    // checa se realmente foi encontrado
+    if (strcmp(L->elementos[i].nome, x->nome) == 0) {
+        
+        // insere lance na pilha respectiva
+        PilhaPush (&L->elementos[i]->info.a_pilha, valor);
+        return 0;
+    }
+    
+    else
+        return 2;
+    
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Insere na fila dentro da pilha dentro da Lista
+ *
+ * Descricao: busca um elemento x e insere o nome na fila
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaInsereFila (Lista* L, elem* x, char* usuario) {
+	
+	int i;
+    
+    if (ListaEstaVazia(L))
+        return 1;
+    
+    // percorre a lista ate encontrar x
+    for (i = 0; i < L->tamanho; i++) {
+        if (strcmp(L->elementos[i].nome, x->nome) == 0)
+            break;
+    }
+    
+    // checa se realmente foi encontrado
+    if (strcmp(L->elementos[i].nome, x->nome) == 0) {
+        
+        // insere nome na fila do lance respectivo
+        FilaInsere (&L->elementos[i]->info.a_pilha.preferencia[i], usuario);
+        return 0;
+    }
+    
+    else
+        return 2;
+    
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
  * Funcao Apagar/Destruir/Queimar Elemento da Lista
  *
  * Descricao: retira um elemento da lista
@@ -163,7 +232,7 @@ int ListaRetira(Lista* L, elem* x) {
     
     elem* p; elem* i;
     
-    int encontrou = ListaBusca(L, x, &p);
+    int encontrou = ListaBusca (L, x, &p);
     
     if (encontrou != 0)
         return encontrou;
@@ -173,7 +242,46 @@ int ListaRetira(Lista* L, elem* x) {
         strcpy(i->nome, (i + 1)->nome);
     }
     
+    PilhaDestroi (L->elementos[L->tamanho].a_pilha);
     L->tamanho--;
     
     return 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Imprimir Lista
+ *
+ * Descricao: Imprime todos os elementos da lista,
+ * 			  inclusive o conteudo da pilha
+ * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void ListaPrint (Lista* L) {
+	int i;
+	
+	for (i = 0; i < L->tamanho; i++) {
+		printf ("Produto %d: %s\n", i + 1, aux->info.nome);
+		PilhaPrint (&L->elementos[i]->info.a_pilha);
+		puts ("");
+	}
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Apagar/Destruir/Queimar Lista
+ *
+ * Descricao: destroi toda a lista, liberando a memoria
+ *
+ * Parametros:
+ *          Lista* L: a lista a ser apagada
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void ListaDestroi (Lista *L) {
+	int i;
+	
+	for (i = 0; i < L->tamanho; i++) {
+		PilhaDestroi (L->elementos[i].a_pilha);
+	}
+	
+	L->tamanho = 0;
 }
