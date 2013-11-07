@@ -7,14 +7,14 @@
 
 
 typedef struct pilha_no {
-        float lances;        // lance
-        Fila preferencia;        // fila de usuarios que deram os lances
-        
-        struct pilha_no *prox;
+	float lances;		// lance
+	Fila preferencia;	// fila de usuarios que deram os lances
+	
+	struct pilha_no *prox;
 } pilha_No;
 
 typedef struct {
-        pilha_No *topo;
+	pilha_No *topo;
 } Pilha;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -121,6 +121,19 @@ int PilhaPush (Pilha *P, float *valorLance);
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int PilhaPop (Pilha *P, float *valorLance);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Espia Topo
+ *
+ * Descricao: espia o elemento do topo da pilha, sem retira-lo
+ *
+ * Parametros:
+ *          Pilha *P: pilha em questao
+ * 			float *valorLance: elemento a receber o valor do topo
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void PilhaEspiaTopo (Pilha *P, float *valorLance);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *

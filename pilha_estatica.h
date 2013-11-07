@@ -1,13 +1,16 @@
-#include "pilha_estatica.h"
+
+#ifndef ALGI_pilha_estatica_h
+#define ALGI_pilha_estatica_h
+
 #include "fila_estatica.h"
 
 #define MAXTAM 255
 
 typedef struct {
-        float lances[MAXTAM];        // vetor de lances
-        Fila preferencia[MAXTAM];        // vetor da fila de usuarios que deram os lances
-        
-        int topo;
+	float lances[MAXTAM];        // vetor de lances
+	Fila preferencia[MAXTAM];        // vetor da fila de usuarios que deram os lances
+	
+	int topo;
 } Pilha;
 
 
@@ -105,8 +108,8 @@ int PilhaPush (Pilha *P, float *valorLance);
  * Descricao: remove o elemento do topo da pilha
  *
  * Parametros:
- *          Pilha *P: pilha em que serah removido o topo
- * float *valorLance: ponteiro contendo o elemento removido
+ *          Pilha *P: pilha em que sera removido o topo
+ * 			float *valorLance: ponteiro contendo o elemento removido
  *
  * Retorno:
  *          int:    0: caso nao tenha ocorrido erros na remocao
@@ -114,6 +117,19 @@ int PilhaPush (Pilha *P, float *valorLance);
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int PilhaPop (Pilha *P, float *valorLance);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ * Funcao Espia Topo
+ *
+ * Descricao: espia o elemento do topo da pilha, sem retira-lo
+ *
+ * Parametros:
+ *          Pilha *P: pilha em questao
+ * 			float *valorLance: elemento a receber o valor do topo
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+void PilhaEspiaTopo (Pilha *P, float *valorLance);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *
@@ -128,3 +144,5 @@ int PilhaPop (Pilha *P, float *valorLance);
 *            void
 */
 void PilhaDestroi (Pilha *P);
+
+#endif

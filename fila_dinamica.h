@@ -118,6 +118,24 @@ int FilaRetira (Fila *, char *);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
+ * Funcao Copiar
+ *
+ * Descricao: copia uma fila para outra;
+ * 			  ATENCAO: essa funcao sobrescreve a Fila destino!
+ *
+ * Parametros:
+ *          Fila*: fila destino
+ *          Fila*: fila fonte
+ *
+ * Retorno:
+ *          int:    0: sucesso
+ *                  ERRO: underflow, fila vazia
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int FilaCopia (Fila *, Fila *);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
  * Funcao Imprimir
  *
  * Descricao: imprime todos os elementos da fila, deixando-a intacta;

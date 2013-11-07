@@ -86,6 +86,37 @@ int FilaRetira (Fila *F, char *nome) {
 }
 
 
+int FilaCopia (Fila *destiny, Fila *source) {
+	if (FilaEstaVazia (source))
+		return ERRO;
+	
+	else {
+		FilaDestroi (destiny);
+		
+		Fila aux;
+		FilaInicia (&aux);
+		
+		char nome[30];
+				
+		// copia para fila auxiliar
+		while (!FilaEstaVazia (source)) {
+			FilaRetira (source, nome);
+			FilaInsere (&aux, nome);
+		}
+		// para podermos copiar para duas ao mesmo tempo
+		while (!FilaEstaVazia (&aux)) {
+			FilaRetira (&aux, nome);
+			// copia para a outra
+			FilaInsere (destiny, nome);
+			// e recopia para a original
+			FilaInsere (source, nome);
+		}
+		
+		return 0;
+	}
+}
+
+
 void FilaPrint (Fila *F) {
 	if (FilaEstaVazia (F)) {
 		puts ("Fila Vazia");
@@ -96,7 +127,6 @@ void FilaPrint (Fila *F) {
 		Fila aux;
 		FilaInicia (&aux);
 		
-		int x;
 		char nome[30];
 		
 		// copia de uma fila pra outra e escreve os resultados parciais

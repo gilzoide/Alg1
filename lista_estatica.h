@@ -24,8 +24,6 @@
 #define TAMANHO_DO_NOME 30
 #define TAMANHO_MAX_DA_LISTA 100
 
-typedef int Pilha;
-
 typedef struct {
   
     char nome[TAMANHO_DO_NOME];

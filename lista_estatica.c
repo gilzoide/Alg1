@@ -91,7 +91,7 @@ int ListaInsereNaPosicaoP(Lista* L, elem* x, int p) {
     
     // insere o novo elemento
     strcpy(L->elementos[p].nome, x->nome);
-    PilhaCria (&L->elementos[p]->info.a_pilha);
+    PilhaCria (&L->elementos[p].a_pilha);
     
     // atualiza o tamanho da lista
     L->tamanho++;
@@ -178,7 +178,7 @@ int ListaInserePilha (Lista* L, elem* x, float* valor) {
     if (strcmp(L->elementos[i].nome, x->nome) == 0) {
         
         // insere lance na pilha respectiva
-        PilhaPush (&L->elementos[i]->info.a_pilha, valor);
+        PilhaPush (&L->elementos[i].a_pilha, valor);
         return 0;
     }
     
@@ -212,7 +212,7 @@ int ListaInsereFila (Lista* L, elem* x, char* usuario) {
     if (strcmp(L->elementos[i].nome, x->nome) == 0) {
         
         // insere nome na fila do lance respectivo
-        FilaInsere (&L->elementos[i]->info.a_pilha.preferencia[i], usuario);
+        FilaInsere (&L->elementos[i].a_pilha.preferencia[i], usuario);
         return 0;
     }
     
@@ -242,7 +242,7 @@ int ListaRetira(Lista* L, elem* x) {
         strcpy(i->nome, (i + 1)->nome);
     }
     
-    PilhaDestroi (L->elementos[L->tamanho].a_pilha);
+    PilhaDestroi (&L->elementos[L->tamanho].a_pilha);
     L->tamanho--;
     
     return 0;
@@ -260,8 +260,8 @@ void ListaPrint (Lista* L) {
 	int i;
 	
 	for (i = 0; i < L->tamanho; i++) {
-		printf ("Produto %d: %s\n", i + 1, aux->info.nome);
-		PilhaPrint (&L->elementos[i]->info.a_pilha);
+		printf ("Produto %d: %s\n", i + 1, L->elementos[i].nome);
+		PilhaPrint (&L->elementos[i].a_pilha);
 		puts ("");
 	}
 }
@@ -280,7 +280,7 @@ void ListaDestroi (Lista *L) {
 	int i;
 	
 	for (i = 0; i < L->tamanho; i++) {
-		PilhaDestroi (L->elementos[i].a_pilha);
+		PilhaDestroi (&L->elementos[i].a_pilha);
 	}
 	
 	L->tamanho = 0;

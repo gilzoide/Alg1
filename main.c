@@ -59,10 +59,10 @@ void DarLance (Lista *produtos) {
 	} while (valor < 0);
 
 #ifdef ALGI_lista_dinamica_h	
-	float ultimo = produtos->info.a_pilha.topo->lances;
+	float ultimo = PilhaEspiaTopo (&produtos->info.a_pilha);
 #endif
 #ifdef ALGI_lista_estatica_h
-	
+	float ultimo = PilhaEspiaTopo (&produtos->info.a_pilha);
 #endif
 
 	if (valor < ultimo) {

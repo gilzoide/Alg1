@@ -4,7 +4,7 @@
 
 
 void PilhaCria (Pilha *P) {
-        P->topo = NULL;
+	P->topo = NULL;
 }
 
 
@@ -12,7 +12,7 @@ int PilhaEstaVazia (Pilha *P) {
     if (P->topo == NULL)
         return 1;
     else
-                return 0;
+		return 0;
 }
 
 
@@ -23,10 +23,12 @@ int PilhaEstaCheia (Pilha *P) {
 
 int PilhaPush (Pilha *P, float *valorLance) {
     pilha_No *aux;
+    
     if ((aux = (pilha_No*) malloc (sizeof (pilha_No))) == NULL) {
-                return ERRO;
-        }
-        
+		return ERRO;
+	}
+    
+    else {
         // 'recheia' o bloco
         aux->lances  = *valorLance;
 
@@ -34,42 +36,59 @@ int PilhaPush (Pilha *P, float *valorLance) {
         P->topo = aux;
         
         return 1;
+	}
 }
 
 
 int PilhaPop (Pilha *P, float *valorLance) {
     if (PilhaEstaVazia (P))
-                return ERRO;
+		return ERRO;
         
-        else {
-                pilha_No *aux = P->topo;
-                
-                *valorLance = aux->lances;
-                P->topo = P->topo->prox;
-                free (aux);
-                
-                return 1;
-        }
+	else {
+		pilha_No *aux = P->topo;
+		
+		*valorLance = aux->lances;
+		P->topo = P->topo->prox;
+		free (aux);
+		
+		return 1;
+	}
+}
+
+
+void PilhaEspiaTopo (Pilha *P, float *valorLance) {
+	*valorLance = P->topo->lances;
 }
 
 
 void PilhaDestroi (Pilha *P) {
-        float aux;
-        
-        while (!PilhaEstaVazia (P)) {
-                PilhaPop (P, &aux);
-        }
+	float aux;
+	
+	while (!PilhaEstaVazia (P)) {
+		FilaDestroi (&P->topo->preferencia);
+		PilhaPop (P, &aux);
+	}
 }
 
+
 void PilhaPrint (Pilha *P) {
+	
+	if (PilhaEstaVazia(P))
+		return ERRO;
+		
     Pilha aux;
-    float retorno = 0.0;
+    float retorno;
+    
     PilhaCria(&aux);
+    
     while (!PilhaEstaVazia(P)) {
-        PilhaPop (P, &retorno);
-        printf("\tR$%.2f\n", retorno);
-        FilaPrint(P->lances);       
-        PilhaPush(&aux, &retorno);
+        // so espia topo para ainda nao perdermos a fila
+		PilhaEspiaTopo (P, &retorno);
+		printf("\tR$%.2f\n", retorno);
+		FilaPrint(&P->topo->preferencia);
+		// copia da P pra pilha auxiliar
+		PilhaPop (P, &retorno);
+		PilhaPush(&aux, &retorno);
     }
     
     while (!PilhaEstaVazia(&aux)) {
@@ -80,23 +99,35 @@ void PilhaPrint (Pilha *P) {
 	PilhaDestroi(&aux);      
 }
 
+
 int PilhaCopia (Pilha *P1, Pilha *P2) {
     if (PilhaEstaVazia(P2))
         return ERRO;
     
+    float retorno;
     Pilha aux;
-    float retorno = 0.0;
-    PilhaCria(&aux);
+    PilhaCria (&aux);
+    Fila f_aux;
+    FilaCria (&f_aux);
+    
     while (!PilhaEstaVazia(P2)) {
-        PilhaPop (P2, &retorno);     
+		FilaCopia (&f_aux, P2->topo->preferencia);
+        PilhaPop (P2, &retorno);
         PilhaPush(&aux, &retorno);
+        FilaCopia (&aux, &f_aux);
     }
     
     while (!PilhaEstaVazia(&aux)) {
+		FilaCopia (&f_aux, aux->topo->preferencia);
         PilhaPop(aux, &retorno);
         PilhaPush(P1, &retorno);
+        FilaCopia (&aux, P1);
         PilhaPush(P2, &retorno);
+        FilaCopia (&aux, P2);
     }
+    
+    PilhaDestroi (&aux);
+    FilaDestroi (&f_aux);
     
     return 0;
 }

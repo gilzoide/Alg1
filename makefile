@@ -8,10 +8,10 @@ static = fila_estatica.c fila_estatica.h pilha_estatica.c pilha_estatica.h lista
 dinamic = fila_dinamica.c fila_dinamica.h pilha_dinamica.c pilha_dinamica.h lista_dinamica.c lista_dinamica.h
 
 # Programa final: versao estatica
-estatica : $(static)
+estatica : $(objs_static) main.o
 	@cc main.o $(objs_static) -o main -O3 -march=native
 
-dinamica : $(dinamic)
+dinamica : $(objs_dinamic) main.o
 	@cc main.o $(objs_dinamic) -o main -O3 -march=native
 
 
