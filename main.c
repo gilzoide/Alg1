@@ -1,9 +1,17 @@
-//	Trabalho 1 de Algoritmos e Estruturas de Dados 1
-//
-//  Created by Léo Sampaio, Alex Barboza e Gil Reis on 02/11/13.
-//
-//  Copyright (c) 2013 Léo Sampaio. All rights reserved.
-//
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                             *
+ *  ALG1 - Trabalho 1                                                          *
+ *                                                                             *
+ *  Alex Frederico Ramos Barboza    Nº7986480                                  *
+ *  alex.barbosa@usp.br                                                        *
+ *                                                                             *
+ *  Gil Barboza Reis                Nº8532248                                  *
+ *  gil.reis@usp.br                                                            *
+ *                                                                             *
+ *  Leonardo Sampaio Ferraz Ribeiro Nº8532300                                  *
+ *  leonardo.sampaio.ribeiro@usp.br                                            *
+ *                                                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
 #include "fila_dinamica.h"
