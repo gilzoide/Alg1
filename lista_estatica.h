@@ -22,7 +22,7 @@
 #include "pilha_estatica.h"
 
 #define TAMANHO_DO_NOME 30
-#define TAMANHO_MAX_DA_LISTA 100
+#define TAMANHO_MAX_DA_LISTA 10
 
 typedef struct {
   
