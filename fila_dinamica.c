@@ -94,7 +94,7 @@ int FilaCopia (Fila *destiny, Fila *source) {
 		FilaDestroi (destiny);
 		
 		Fila aux;
-		FilaInicia (&aux);
+		FilaCria (&aux);
 		
 		char nome[30];
 				
@@ -125,7 +125,7 @@ void FilaPrint (Fila *F) {
 
 	else {
 		Fila aux;
-		FilaInicia (&aux);
+		FilaCria (&aux);
 		
 		char nome[30];
 		

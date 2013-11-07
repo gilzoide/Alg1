@@ -128,13 +128,13 @@ int ListaInsereOrdenado(Lista* L, elem* x) {
  * o mesmo na lista usando o parametro p da fucao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaBusca(Lista* L, elem* x, elem** p) {
+int ListaBusca (Lista* L, elem* x, elem** p) {
     
     int i;
     *p = NULL;
     
     if (ListaEstaVazia(L))
-        return 1;
+        return -1;
     
     // percorre a lista ate encontrar x
     for (i = 0; i < L->tamanho; i++) {
@@ -146,11 +146,11 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
     if (strcmp(L->elementos[i].nome, x->nome) == 0) {
         
         *p = &L->elementos[i];
-        return 0;
+        return i;
     }
     
     else
-        return 2;
+        return -2;
     
 }
 
@@ -164,27 +164,16 @@ int ListaBusca(Lista* L, elem* x, elem** p) {
 int ListaInserePilha (Lista* L, elem* x, float* valor) {
 	
 	int i;
+	elem **aux;
     
-    if (ListaEstaVazia(L))
-        return 1;
+    i = ListaBusca (L, x, aux);
     
-    // percorre a lista ate encontrar x
-    for (i = 0; i < L->tamanho; i++) {
-        if (strcmp(L->elementos[i].nome, x->nome) == 0)
-            break;
-    }
-    
-    // checa se realmente foi encontrado
-    if (strcmp(L->elementos[i].nome, x->nome) == 0) {
-        
+    if (i >= 0) {
         // insere lance na pilha respectiva
         PilhaPush (&L->elementos[i].a_pilha, valor);
-        return 0;
-    }
-    
-    else
-        return 2;
-    
+	}
+	
+	return i;
 }
 
 
@@ -198,27 +187,16 @@ int ListaInserePilha (Lista* L, elem* x, float* valor) {
 int ListaInsereFila (Lista* L, elem* x, char* usuario) {
 	
 	int i;
+    elem **aux;
     
-    if (ListaEstaVazia(L))
-        return 1;
+    i = ListaBusca (L, x, aux);
     
-    // percorre a lista ate encontrar x
-    for (i = 0; i < L->tamanho; i++) {
-        if (strcmp(L->elementos[i].nome, x->nome) == 0)
-            break;
+    if (i >= 0) {
+		// insere nome na fila do lance respectivo
+		FilaInsere (&L->elementos[i].a_pilha.preferencia[i], usuario);
     }
     
-    // checa se realmente foi encontrado
-    if (strcmp(L->elementos[i].nome, x->nome) == 0) {
-        
-        // insere nome na fila do lance respectivo
-        FilaInsere (&L->elementos[i].a_pilha.preferencia[i], usuario);
-        return 0;
-    }
-    
-    else
-        return 2;
-    
+    return i;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

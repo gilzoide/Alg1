@@ -52,7 +52,7 @@ typedef struct {
  *                  1: erro: nao foi possivel criar a lista
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaCria(Lista* L);
+int ListaCria (Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -68,7 +68,7 @@ int ListaCria(Lista* L);
  *                  1: esta cheia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaEstaCheia(Lista* L);
+int ListaEstaCheia (Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -84,7 +84,7 @@ int ListaEstaCheia(Lista* L);
  *                  1: esta vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaEstaVazia(Lista* L);
+int ListaEstaVazia (Lista* L);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -103,7 +103,7 @@ int ListaEstaVazia(Lista* L);
  *                  2: erro: posicao invalida ou erro na insercao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaInsereNaPosicaoP(Lista* L, elem* x, int p);
+int ListaInsereNaPosicaoP (Lista* L, elem* x, int p);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -121,7 +121,7 @@ int ListaInsereNaPosicaoP(Lista* L, elem* x, int p);
  *                  2: erro: erro na insercao
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaInsereOrdenado(Lista* L, elem* x);
+int ListaInsereOrdenado (Lista* L, elem* x);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -137,12 +137,12 @@ int ListaInsereOrdenado(Lista* L, elem* x);
  *                   caso contrario, sera NULL
  *
  * Retorno:
- *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
+ *          int:    indice da posicao encontrada
+ * 					-1: erro: a lista esta vazia
+ *                  -2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaBusca(Lista* L, elem* x, elem** p);
+int ListaBusca (Lista* L, elem* x, elem** p);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
@@ -156,9 +156,9 @@ int ListaBusca(Lista* L, elem* x, elem** p);
  *          float* valor: valor do lance a ser inserido
  *
  * Retorno:
- *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
+ *          int:    indice da posicao de x
+ * 					-1: erro: a lista esta vazia
+ *                  -2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInserePilha (Lista* L, elem* x, float* valor);
@@ -175,9 +175,9 @@ int ListaInserePilha (Lista* L, elem* x, float* valor);
  *          char* nome: nome do usuario que deu o lance
  *
  * Retorno:
- *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
- *                  2: erro: elemento nao encontrado
+ *          int:    indice da posicao de x
+ * 					-1: erro: a lista esta vazia
+ *                  -2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaInsereFila (Lista* L, elem* x, char* usuario);
@@ -198,7 +198,7 @@ int ListaInsereFila (Lista* L, elem* x, char* usuario);
  *                  2: erro: elemento nao encontrado
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-int ListaRetira(Lista* L, elem* x);
+int ListaRetira (Lista* L, elem* x);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *

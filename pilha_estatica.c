@@ -5,7 +5,6 @@
 
 void PilhaCria (Pilha *P) {
 	P->topo = -1;
-	CriaFila(P->preferencia);
 	return;        
 }
 

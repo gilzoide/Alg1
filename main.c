@@ -25,12 +25,12 @@ void MostraEscolhas () {
 
 
 void CadastraProduto (Lista *produtos) {
-	char nome[50];
+	elem novo;
 	
 	printf ("Nome do produto: ");
-	fgets (nome, 50, stdin);	// le do usuario o nome do produto
+	fgets (novo.nome, 50, stdin);	// le do usuario o nome do produto
 	
-	ListaInsereOrdenado (produtos, nome);	// insere nome na lista
+	ListaInsereOrdenado (produtos, &novo);	// insere nome na lista
 }
 
 
@@ -43,13 +43,14 @@ void ListarProdutos (Lista produtos) {
 
 void DarLance (Lista *produtos) {
 	float valor;
-	char nome[30], usuario[30];
+	char usuario[30];
+	elem novo, **aux;
 	
-	fgets (nome, 30, stdin);
+	fgets (novo.nome, 30, stdin);
 	
-	if (ListaBusca (produtos, nome, &nome) != 0) {
+	if (ListaBusca (produtos, &novo, aux) != 0) {
 		puts ("Produto Invalido!\n\
-			Escolha 'l' para listagem de produtos"
+			Escolha 'l' para listagem de produtos");
 		return;
 	}
 	
@@ -62,17 +63,19 @@ void DarLance (Lista *produtos) {
 	float ultimo = PilhaEspiaTopo (&produtos->info.a_pilha);
 #endif
 #ifdef ALGI_lista_estatica_h
-	float ultimo = PilhaEspiaTopo (&produtos->info.a_pilha);
+	int i = ListaBusca (produtos, &novo, aux);
+	float ultimo;
+	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
 #endif
 
 	if (valor < ultimo) {
 		puts ("Valor menor que ultimo lance dado!");
 	}
 	else if (valor == ultimo) {
-		ListaInsereFila (produtos, nome, usuario);
+		ListaInsereFila (produtos, &novo, usuario);
 	}
 	else {
-		ListaInserePilha (produtos, nome, &valor);
+		ListaInserePilha (produtos, &novo, &valor);
 	}
 }
 

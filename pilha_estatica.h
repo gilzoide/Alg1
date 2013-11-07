@@ -49,21 +49,11 @@ void PilhaCria (Pilha *P);
  * Descricao: verifica se pilha esta vazia
  *
  * Parametros:
- *          Pilha: fila a ser verificada
- *
- * Retornota Cheia?
- *
- * Descricao: verifica se a lista esta cheia
- *
- * Parametros:
- *          Fila*: fila a ser verificada
+ *          Pilha: pilha a ser verificada
  *
  * Retorno:
  *          int:    0: nao esta cheia
  *                  1: esta cheia
- *
- *          int:    0: nao esta vazia
- *                  1: esta vazia
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int PilhaEstaVazia (Pilha *P);
@@ -72,7 +62,7 @@ int PilhaEstaVazia (Pilha *P);
  *
  * Funcao PilhaEstaCheia
  *
- * Descricao: verifica se a lista esta cheia
+ * Descricao: verifica se a pilha esta cheia
  *
  * Parametros:
  *          Fila*: pilha a ser verificada
@@ -132,17 +122,17 @@ int PilhaPop (Pilha *P, float *valorLance);
 void PilhaEspiaTopo (Pilha *P, float *valorLance);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*
-* Funcao PilhaDestroi
-* 
-* Descricao: detroi uma pilha
-*
-* Parametros:
-*	    Pilha *P: pilha a ser destruida
-*
-* Retorno:
-*            void
-*/
+ *
+ * Funcao PilhaDestroi
+ * 
+ * Descricao: detroi uma pilha
+ *
+ * Parametros:
+ *	    Pilha *P: pilha a ser destruida
+ *
+ * Retorno:
+ *            void
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 void PilhaDestroi (Pilha *P);
 
 #endif
