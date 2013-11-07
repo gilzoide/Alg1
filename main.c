@@ -5,15 +5,15 @@
 //  Copyright (c) 2013 Léo Sampaio. All rights reserved.
 //
 
-/*
+
 #include "fila_dinamica.h"
 #include "lista_dinamica.h"
 #include "pilha_dinamica.h"
-*/
+/*
 #include "fila_estatica.h"
 #include "lista_estatica.h"
 #include "pilha_estatica.h"
-
+*/
 #include <stdio.h>
 
 
@@ -67,7 +67,8 @@ void DarLance (Lista *produtos) {
 	printf ("Nome do produto: ");
 	fgets (novo.nome, TAMANHO_DO_NOME, stdin);
 	
-	if (ListaBusca (produtos, &novo, aux) != 0) {
+	int i = ListaBusca (produtos, &novo, aux);
+	if (i == -1 || i == -2) {
 		puts ("Produto Invalido!\n\
 			Escolha 'l' para listagem de produtos");
 		return;
@@ -86,7 +87,6 @@ void DarLance (Lista *produtos) {
 	PilhaEspiaTopo (&(*aux)->a_pilha, &ultimo);
 #endif
 #ifdef ALGI_lista_estatica_h
-	int i = ListaBusca (produtos, &novo, aux);
 	float ultimo;
 	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
 #endif
@@ -120,9 +120,10 @@ int main (int argc, const char * argv[]) {
 	// loop principal do programa
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
-		__fpurge (stdin);
-		scanf ("%c", &escolha);	// le a escolha do usuario
-		__fpurge (stdin);
+		fflush (stdin);
+		scanf (" %c", &escolha);	// le a escolha do usuario
+		fflush (stdin);
+		puts ("");
 		
 		switch (escolha) {
 			case 'c':
