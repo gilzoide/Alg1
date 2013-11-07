@@ -40,15 +40,15 @@ void CadastraProduto (Lista *produtos) {
 }
 
 
-void ListarProdutos (Lista produtos) {
-	if (ListaEstaVazia (&produtos)) {
+void ListarProdutos (Lista *produtos) {
+	if (ListaEstaVazia (produtos)) {
 		puts ("Nenhum produto cadastrado!\n\n");
 		return;
 	}
 	else {
 		puts ("\tProdutos cadastrados");
 		puts ("\t--------------------");
-		ListaPrint (&produtos);
+		ListaPrint (produtos);
 		puts ("\n");
 	}
 }
@@ -142,7 +142,7 @@ int main (int argc, const char * argv[]) {
 				break;
 				
 			case 'l':
-				ListarProdutos (produtos);
+				ListarProdutos (&produtos);
 				break;
 			
 			case 'd':
