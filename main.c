@@ -6,14 +6,14 @@
 //
 
 
-#include "fila_dinamica.h"
-#include "lista_dinamica.h"
-#include "pilha_dinamica.h"
-/*
+//#include "fila_dinamica.h"
+//#include "lista_dinamica.h"
+//#include "pilha_dinamica.h"
+
 #include "fila_estatica.h"
 #include "lista_estatica.h"
 #include "pilha_estatica.h"
-*/
+
 #include <stdio.h>
 
 
@@ -85,7 +85,7 @@ void DarLance (Lista *produtos) {
 	float ultimo;
 
 #ifdef ALGI_lista_dinamica_h
-	PilhaEspiaTopo (&(*aux)->a_pilha, &ultimo);
+	PilhaEspiaTopo (&aux->a_pilha, &ultimo);
 #endif
 #ifdef ALGI_lista_estatica_h
 	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
@@ -120,9 +120,9 @@ int main (int argc, const char * argv[]) {
 	// loop principal do programa
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
-		fflush (stdin);
+		__fpurge (stdin);
 		scanf (" %c", &escolha);	// le a escolha do usuario
-		fflush (stdin);
+		__fpurge (stdin);
 		puts ("");
 		
 		switch (escolha) {
