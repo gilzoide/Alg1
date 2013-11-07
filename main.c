@@ -62,12 +62,12 @@ void DarLance (Lista *produtos) {
 	
 	float valor;
 	char usuario[30];
-	elem novo, **aux;
+	elem novo, *aux;
 	
 	printf ("Nome do produto: ");
 	fgets (novo.nome, TAMANHO_DO_NOME, stdin);
 	
-	if (ListaBusca (produtos, &novo, aux) != 0) {
+	if (ListaBusca (produtos, &novo, &aux) != 0) {
 		puts ("Produto Invalido!\n\
 			Escolha 'l' para listagem de produtos");
 		return;
@@ -120,9 +120,9 @@ int main (int argc, const char * argv[]) {
 	// loop principal do programa
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
-		__fpurge (stdin);
+		fpurge (stdin);
 		scanf ("%c", &escolha);	// le a escolha do usuario
-		__fpurge (stdin);
+		fpurge (stdin);
 		
 		switch (escolha) {
 			case 'c':
