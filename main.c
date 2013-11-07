@@ -67,7 +67,8 @@ void DarLance (Lista *produtos) {
 	printf ("Nome do produto: ");
 	fgets (novo.nome, TAMANHO_DO_NOME, stdin);
 	
-	if (ListaBusca (produtos, &novo, &aux) != 0) {
+	int i = ListaBusca (produtos, &novo, &aux);
+	if (i == -1 || i == -2) {
 		puts ("Produto Invalido!\n\
 			Escolha 'l' para listagem de produtos");
 		return;
