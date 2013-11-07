@@ -6,13 +6,13 @@
 //
 
 
-//#include "fila_dinamica.h"
-//#include "lista_dinamica.h"
-//#include "pilha_dinamica.h"
+#include "fila_dinamica.h"
+#include "lista_dinamica.h"
+#include "pilha_dinamica.h"
 
-#include "fila_estatica.h"
-#include "lista_estatica.h"
-#include "pilha_estatica.h"
+//#include "fila_estatica.h"
+//#include "lista_estatica.h"
+//#include "pilha_estatica.h"
 
 #include <stdio.h>
 

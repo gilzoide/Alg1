@@ -215,7 +215,7 @@ int ListaRetira(Lista* L, elem* x);
  *          Lista* L: a lista a ser impressa
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-void ListaPrint (Lista* L);
+void ListaPrint (Lista* L, char ultimo);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *

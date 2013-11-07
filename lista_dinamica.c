@@ -252,7 +252,7 @@ int ListaRetira(Lista* L, elem* x) {
  * 			  inclusive o conteudo da pilha
  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-void ListaPrint (Lista* L) {
+void ListaPrint (Lista* L, char ultimo) {
 	no* aux;
 	
 	int i = 0;
