@@ -79,7 +79,7 @@ void DarLance (Lista *produtos) {
 	do {
 		printf ("Valor do lance: ");
 		scanf ("%f", &valor);
-	} while (valor < 0);
+	} while (valor <= 0);
 
 	float ultimo;
 
@@ -90,7 +90,6 @@ void DarLance (Lista *produtos) {
 	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
 #endif
 
-	puts ("problema aqui");
 
 	if (valor < ultimo) {
 		puts ("Valor menor que ultimo lance dado!");
@@ -102,6 +101,8 @@ void DarLance (Lista *produtos) {
 		ListaInserePilha (produtos, &novo, &valor);
 		ListaInsereFila (produtos, &novo, usuario);
 	}
+	
+	puts ("\n");
 }
 
 
