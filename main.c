@@ -120,9 +120,9 @@ int main (int argc, const char * argv[]) {
 	// loop principal do programa
 	while (escolha != 'q') {
 		MostraEscolhas ();	// mostra as escolhas pro usuario
-		__fpurge (stdin);
+		fpurge (stdin);
 		scanf (" %c", &escolha);	// le a escolha do usuario
-		__fpurge (stdin);
+		fpurge (stdin);
 		puts ("");
 		
 		switch (escolha) {
