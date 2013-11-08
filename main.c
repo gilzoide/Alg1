@@ -23,7 +23,7 @@
 //#include "pilha_estatica.h"
 
 
-
+#include <stdlib.h>
 #include <stdio.h>
 
 
@@ -58,7 +58,7 @@ void ListarProdutos (Lista *produtos) {
 	else {
 		puts ("\tProdutos cadastrados");
 		puts ("\t--------------------");
-		ListaPrint (&produtos, 0);
+		ListaPrint (produtos, 0);
 		puts ("\n");
 	}
 }
@@ -124,34 +124,36 @@ void EncerraLeilao (Lista *produtos) {
 		ListaPop (produtos, &aux);	// pega cada bloco da lista, pra imprimir
 		printf ("%s: ", aux->nome);	// mostra nome do produto
 		
-		if (PilhaPop (&(*aux)->a_pilha, &lance) == ERRO) {	// pega o lance
+		if (PilhaPop (&aux->a_pilha, &lance) == ERRO) {	// pega o lance
 			puts ("sem comprador; nenhum lance dado");	// se ninguem deu lance (ERRO)
 		}
 		else {	// tem lances! Alguem comprou
 		
 			// acha o nome do comprador	
 			#ifdef ALGI_lista_dinamica_h
-				FilaRetira (&(*aux)->a_pilha.topo->preferencia, nome);
+				FilaRetira (&aux->a_pilha.topo->preferencia, nome);
 			#elif ALGI_lista_estatica_h
-				FilaRetira (&(*aux)->a_pilha.preferencia[(*aux)->a_pilha.topo], nome);
+				FilaRetira (&aux->a_pilha.preferencia[aux->a_pilha.topo], nome);
 			#endif
 			printf ("Comprador: %s, por %R$.2f\n", nome, lance);
 			
 			// tem mais gente que deu o mesmo lance: ve se o primeiro quer dividir
 			if (
 				#ifdef ALGI_lista_dinamica_h
-					FilaRetira (&(*aux)->a_pilha.topo->preferencia, nome)
+					FilaRetira (&aux->a_pilha.topo->preferencia, nome)
 				#elif ALGI_lista_estatica_h
-					FilaRetira (&(*aux)->a_pilha.preferencia[(*aux)->a_pilha.topo], nome)
-				#endif != ERRO) {
+					FilaRetira (&aux->a_pilha.preferencia[aux->a_pilha.topo], nome)
+				#endif
+			!= ERRO) {
 					
 				printf ("Mais pessoas deram o mesmo lance.\nDeseja dividir o produto com %s", nome);
 				while (
-				#ifdef ALGI_lista_dinamica_h
-					FilaRetira (&(*aux)->a_pilha.topo->preferencia, nome)
-				#elif ALGI_lista_estatica_h
-					FilaRetira (&(*aux)->a_pilha.preferencia[(*aux)->a_pilha.topo], nome)
-				#endif != ERRO) {
+					#ifdef ALGI_lista_dinamica_h
+						FilaRetira (&aux->a_pilha.topo->preferencia, nome)
+					#elif ALGI_lista_estatica_h
+						FilaRetira (&aux->a_pilha.preferencia[aux->a_pilha.topo], nome)
+					#endif
+				!= ERRO) {
 					printf (", %s", nome);
 				}
 				
@@ -164,13 +166,16 @@ void EncerraLeilao (Lista *produtos) {
 				
 				switch (escolha) {
 					case 's':
-						puts ("Voce escolheu dividir o premio. Parabens pela aquisicao!\n")
+						puts ("Voce escolheu dividir o premio. Parabens pela aquisicao!\n");
 						break;
 					case 'n':
-						puts ("Voce escolheu comprar sozinho. Parabens pela aquisicao!\n")
+						puts ("Voce escolheu comprar sozinho. Parabens pela aquisicao!\n");
 						break;
 				}
 			}
+			
+			PilhaDestroi (&aux->a_pilha);
+			free (aux);
 		}
 	}
 }
