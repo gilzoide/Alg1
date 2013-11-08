@@ -158,10 +158,8 @@ int ListaBusca (Lista* L, elem* x, elem** p);
  *
  * Retorno:
  *          int:    0: sucesso
- *                  1: erro: a lista esta vazia
+ *                  1: erro
  *
- * OBS.: x é um elemento alocado dinamicamente e deve ter sua memória
- * liberada posteriormente
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaPop(Lista* L, elem** x);

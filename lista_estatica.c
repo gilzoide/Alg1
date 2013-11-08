@@ -164,13 +164,16 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaPop(Lista* L, elem** x) {
     
-    elem* p; elem* i;
+    elem* tmp; int i;
     
+    if (ListaEstaCheia(L))
+        return 1;
     
+    l->elementos[L->tamanho] = l->elementos[0];
+    *x = &l->elementos[L->tamanho]
     
-    // reorganiza a lista usando aritmetica de ponteiros
-    for (i = p; i != &L->elementos[L->tamanho]; i++) {
-        strcpy(i->nome, (i + 1)->nome);
+    for (i = 0; i < L->tamanho; i++) {
+        memcpy(L->elementos[i], L->elementos[i+1], sizeof(elem));
     }
     
     L->tamanho--;
