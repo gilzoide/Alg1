@@ -22,6 +22,8 @@
 //#include "lista_estatica.h"
 //#include "pilha_estatica.h"
 
+
+
 #include <stdio.h>
 
 
@@ -122,7 +124,7 @@ void EncerraLeilao (Lista *produtos) {
 
 int main (int argc, const char * argv[]) {
 	
-	int escolha;	// escolha do usuario a cada interacao com o sistema
+	char escolha;	// escolha do usuario a cada interacao com o sistema
 	
 	Lista produtos;
 	
