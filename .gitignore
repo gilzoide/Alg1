@@ -2,9 +2,12 @@
 *.o
 # executavel
 main
+# zip pra mandar
+*.zip
 
 # pdf do trabalho (no meu tem)
-Alg-Trab1.pdf
+# e relatorio
+*.pdf
 
 # arquivos de backup de texto
 *~

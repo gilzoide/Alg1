@@ -1,3 +1,19 @@
+# # # # # # # # # # # # # # # # # # # # # # # #
+#
+# ALG1 - Trabalho 1
+#
+# Alex Frederico Ramos Barboza    Nº7986480
+# alex.barbosa@usp.br
+#
+# Gil Barbosa Reis                Nº8532248
+# gil.reis@usp.br
+#
+# Leonardo Sampaio Ferraz Ribeiro Nº8532300
+# leonardo.sampaio.ribeiro@usp.br
+#
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+
 # Makefile da geral
 
 objs = main.o lista_estatica.o lista_dinamica.o fila_estatica.o fila_dinamica.o pilha_estatica.o pilha_dinamica.o
@@ -48,7 +64,7 @@ commit :
 	@git commit -a && git push
 
 zip :
-	@zip makefile main.c $(source_static) $(source_dinamic)
+	@zip TrabAlg1  makefile main.c $(source_static) $(source_dinamic) relatorio.pdf
 
 clean :
 	@rm main $(objs) *~ alg1.zip

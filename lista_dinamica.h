@@ -6,7 +6,7 @@
  *  Alex Frederico Ramos Barboza    Nº7986480                                  *
  *  alex.barbosa@usp.br                                                        *
  *                                                                             *
- *  Gil Barboza Reis                Nº8532248                                  *
+ *  Gil Barbosa Reis                Nº8532248                                  *
  *  gil.reis@usp.br                                                            *
  *                                                                             *
  *  Leonardo Sampaio Ferraz Ribeiro Nº8532300                                  *
