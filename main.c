@@ -135,7 +135,7 @@ void EncerraLeilao (Lista *produtos) {
 			#elif ALGI_lista_estatica_h
 				FilaRetira (&aux->a_pilha.preferencia[aux->a_pilha.topo], nome);
 			#endif
-			printf ("Comprador: %s, por %R$.2f\n", nome, lance);
+			printf ("Comprador: %s, por R$%.2f\n", nome, lance);
 			
 			// tem mais gente que deu o mesmo lance: ve se o primeiro quer dividir
 			if (
