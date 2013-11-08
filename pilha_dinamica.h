@@ -98,7 +98,7 @@ int PilhaEstaCheia (Pilha *P);
  *
  * Retorno:
  *          int:    0: caso nao tenha ocorrido erros na insercao
- *                  1: caso contrario
+ *                  ERRO: caso contrario
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int PilhaPush (Pilha *P, float *valorLance);
@@ -116,7 +116,7 @@ int PilhaPush (Pilha *P, float *valorLance);
  *
  * Retorno:
  *          int:    0: caso nao tenha ocorrido erros na remocao
- *                  1: caso contrario
+ *                  ERRO: caso contrario
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int PilhaPop (Pilha *P, float *valorLance);

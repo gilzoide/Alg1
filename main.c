@@ -93,8 +93,7 @@ void DarLance (Lista *produtos) {
 
 #ifdef ALGI_lista_dinamica_h
 	PilhaEspiaTopo (&aux->a_pilha, &ultimo);
-#endif
-#ifdef ALGI_lista_estatica_h
+#elif ALGI_lista_estatica_h
 	PilhaEspiaTopo (&produtos->elementos[i].a_pilha, &ultimo);
 #endif
 
@@ -115,14 +114,70 @@ void DarLance (Lista *produtos) {
 
 
 void EncerraLeilao (Lista *produtos) {
+	elem *aux;
+	float lance;
+	char nome[TAMANHO_DO_NOME];
 	
+	while (!ListaEstaVazia (produtos)) {
+		ListaPop (produtos, &aux);	// pega cada bloco da lista, pra imprimir
+		printf ("%s: ", aux->nome);	// mostra nome do produto
+		
+		if (PilhaPop (&(*aux)->a_pilha, &lance) == ERRO) {	// pega o lance
+			puts ("sem comprador; nenhum lance dado");	// se ninguem deu lance (ERRO)
+		}
+		else {	// tem lances! Alguem comprou
+		
+			// acha o nome do comprador	
+			#ifdef ALGI_lista_dinamica_h
+				FilaRetira (&(*aux)->a_pilha.topo->preferencia, nome);
+			#elif ALGI_lista_estatica_h
+				FilaRetira (&(*aux)->a_pilha.preferencia[(*aux)->a_pilha.topo], nome);
+			#endif
+			printf ("Comprador: %s, por %R$.2f\n", nome, lance);
+			
+			// tem mais gente que deu o mesmo lance: ve se o primeiro quer dividir
+			if (
+				#ifdef ALGI_lista_dinamica_h
+					FilaRetira (&(*aux)->a_pilha.topo->preferencia, nome)
+				#elif ALGI_lista_estatica_h
+					FilaRetira (&(*aux)->a_pilha.preferencia[(*aux)->a_pilha.topo], nome)
+				#endif != ERRO) {
+					
+				printf ("Mais pessoas deram o mesmo lance.\nDeseja dividir o produto com %s", nome);
+				while (
+				#ifdef ALGI_lista_dinamica_h
+					FilaRetira (&(*aux)->a_pilha.topo->preferencia, nome)
+				#elif ALGI_lista_estatica_h
+					FilaRetira (&(*aux)->a_pilha.preferencia[(*aux)->a_pilha.topo], nome)
+				#endif != ERRO) {
+					printf (", %s", nome);
+				}
+				
+				printf ("?  s/n");
+				
+				char escolha;
+				do {
+					escolha = getchar ();
+				} while (escolha != 's' && escolha != 'n');
+				
+				switch (escolha) {
+					case 's':
+						puts ("Voce escolheu dividir o premio. Parabens pela aquisicao!\n")
+						break;
+					case 'n':
+						puts ("Voce escolheu comprar sozinho. Parabens pela aquisicao!\n")
+						break;
+				}
+			}
+		}
+	}
 }
 
 
 
 int main (int argc, const char * argv[]) {
 	
-	int escolha;	// escolha do usuario a cada interacao com o sistema
+	char escolha;	// escolha do usuario a cada interacao com o sistema
 	
 	Lista produtos;
 	
