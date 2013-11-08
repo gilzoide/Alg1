@@ -135,4 +135,6 @@ void PilhaEspiaTopo (Pilha *P, float *valorLance);
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 void PilhaDestroi (Pilha *P);
 
+int PilhaCopia (Pilha *P1, Pilha *P2);
+
 #endif
