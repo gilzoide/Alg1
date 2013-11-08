@@ -146,6 +146,28 @@ int ListaBusca (Lista* L, elem* x, elem** p);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
+ * Funcao Lista Pop
+ *
+ * Descricao: Retira e retorna um ponteiro para o primeiro elemento da
+ * lista
+ *
+ * Parametros:
+ *          Lista* L: a lista onde havera insercao
+ *          elem** x: se x for encontrado, sera o ponteiro para o mesmo,
+ *                   caso contrario, sera NULL
+ *
+ * Retorno:
+ *          int:    0: sucesso
+ *                  1: erro: a lista esta vazia
+ *
+ * OBS.: x é um elemento alocado dinamicamente e deve ter sua memória
+ * liberada posteriormente
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaPop(Lista* L, elem** x);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
  * Funcao Insere na pilha dentro da Lista
  *
  * Descricao: busca um elemento x e insere o valor na pilha
