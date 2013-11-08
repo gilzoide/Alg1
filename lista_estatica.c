@@ -164,16 +164,16 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaPop(Lista* L, elem** x) {
     
-    elem* tmp; int i;
+    int i;
     
     if (ListaEstaCheia(L))
         return 1;
     
-    l->elementos[L->tamanho] = l->elementos[0];
-    *x = &l->elementos[L->tamanho]
+    L->elementos[L->tamanho] = L->elementos[0];
     
     for (i = 0; i < L->tamanho; i++) {
-        memcpy(L->elementos[i], L->elementos[i+1], sizeof(elem));
+        strcpy(L->elementos[i].nome, L->elementos[i+1].nome);
+        PilhaCopia(&L->elementos[i].a_pilha, &L->elementos[i+1].a_pilha);
     }
     
     L->tamanho--;
