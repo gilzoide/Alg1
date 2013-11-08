@@ -45,8 +45,8 @@ int ListaCria(Lista* L) {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 int ListaEstaCheia(Lista* L) {
     
-        // lista dinamica nunca estara cheia
-        return 0;
+    // lista dinamica nunca estara cheia
+    return 0;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -169,6 +169,34 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
+ * Funcao Lista Pop
+ *
+ * Descricao: Retira e retorna um ponteiro para o primeiro elemento da
+ * lista
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaPop(Lista* L, elem** x) {
+    
+    no** aux; *x = NULL;
+    
+    if (ListaEstaVazia(L))
+        return 1;
+    
+    // encontra o elemento
+    aux = &L->cabeca;
+    
+    // checa se encontrou o elemento
+    
+    no* tmp = (*aux);
+    *x = &(*aux)->info;
+    *aux = (*aux)->prox;
+    free(tmp);
+    return 0;
+    
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
  * Funcao insere na pilha dentro da Lista
  *
  * Descricao: busca um elemento x insere o valor na pilha
@@ -250,7 +278,7 @@ int ListaRetira(Lista* L, elem* x) {
  *
  * Descricao: Imprime todos os elementos da lista,
  * 			  inclusive o conteudo da pilha
- * 
+ *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 void ListaPrint (Lista* L, char ultimo) {
 	no* aux;

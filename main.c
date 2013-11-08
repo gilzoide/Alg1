@@ -22,6 +22,8 @@
 //#include "lista_estatica.h"
 //#include "pilha_estatica.h"
 
+
+
 #include <stdio.h>
 
 

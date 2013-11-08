@@ -156,6 +156,31 @@ int ListaBusca (Lista* L, elem* x, elem** p) {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
+ * Funcao Lista Pop
+ *
+ * Descricao: Retira e retorna um ponteiro para o primeiro elemento da
+ * lista
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int ListaPop(Lista* L, elem** x) {
+    
+    elem* p; elem* i;
+    
+    
+    
+    // reorganiza a lista usando aritmetica de ponteiros
+    for (i = p; i != &L->elementos[L->tamanho]; i++) {
+        strcpy(i->nome, (i + 1)->nome);
+    }
+    
+    L->tamanho--;
+    
+    return 0;
+    
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
  * Funcao insere na pilha dentro da Lista
  *
  * Descricao: busca um elemento x e insere o valor na pilha
